@@ -6,15 +6,22 @@ const seedingQuery = 'insert into product_images (product_id, product_name, medi
 db.query('truncate table PRODUCT_IMAGES');
 
 fakeDatamaker = () => {
-  for (let i = 0; i < 100; i++) {
+  let product_id = 1
+  for (let i = 1; i <= 100; i++) {
     let output =
       [
-        i,
+        product_id,
         faker.commerce.productName(),
         'image',
         'description',
-        faker.image.animals()
+        faker.image.animals(90, 90)
       ];
+
+    //allocating the same product id per product.
+    if (i % 5 === 0) {
+      product_id++;
+    };
+
     db.query(seedingQuery, output, (err, result) => {
       if (err) {
         console.log(err);

@@ -15,7 +15,7 @@ connection.connect((err) => {
   }
 })
 
-connection.getImages = (product_id, callback) => {
+connection.getProductInfo = (product_id, callback) => {
   let queryString = `SELECT * FROM PRODUCT_IMAGES WHERE PRODUCT_ID = ${product_id}`;
   connection.query(queryString, (err, queryData) => {
     if(err) {
@@ -28,15 +28,14 @@ connection.getImages = (product_id, callback) => {
 
 module.exports.connection = connection;
 
-
-// TABLE NAME = PRODUCT_IMAGES
-// +------------+------------+----+---+-------+--------------+
-// |Field       |Type        |Null|Key|Default|Extra         |
-// +------------+------------+----+---+-------+--------------+
-// |ID          |int(11)     |NO  |PRI|NULL   |auto_increment|
-// |PRODUCT_ID  |varchar(4)  |YES |   |NULL   |              |
-// |PRODUCT_NAME|varchar(10) |YES |   |NULL   |              |
-// |MEDIA_TYPE  |varchar(10) |YES |   |NULL   |              |
-// |IMAGE_DESC  |varchar(240)|YES |   |NULL   |              |
-// |IMAGE_LOC   |varchar(240)|YES |   |NULL   |              |
-// +------------+------------+----+---+-------+--------------+
+// mysql 5.7
+// +--------------+--------------+------+-----+---------+----------------+
+// | Field        | Type         | Null | Key | Default | Extra          |
+// +--------------+--------------+------+-----+---------+----------------+
+// | ID           | int(11)      | NO   | PRI | NULL    | auto_increment |
+// | product_id   | varchar(4)   | YES  |     | NULL    |                |
+// | product_name | varchar(60)  | YES  |     | NULL    |                |
+// | media_type   | varchar(10)  | YES  |     | NULL    |                |
+// | image_desc   | varchar(240) | YES  |     | NULL    |                |
+// | image_loc    | varchar(240) | YES  |     | NULL    |                |
+// +--------------+--------------+------+-----+---------+----------------+

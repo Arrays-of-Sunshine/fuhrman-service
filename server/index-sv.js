@@ -10,10 +10,10 @@ app.use(express.urlencoded());
 app.use(express.static('public'))
 
 app.get('/:id', (req, res) => {
-  console.log(req);
+  // console.log(req);
   let id = req.params.id;
-  db.getImages(id, (result) => {
-    console.log(result);
+  db.getProductInfo(id, (result) => {
+    // console.log(result);
     res.send(result);
   })
 })

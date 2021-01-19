@@ -1,14 +1,16 @@
+// import path from 'path';
 import React from 'react';
 import axios from 'axios';
 import Thumbnails from './components/thumbnails.jsx';
+import style from './style.css';
+
 
 class App extends React.Component {
   constructor () {
     super();
     this.state = {
       view: "view",
-      current_product_info: [],
-      current_main_image: [],
+      current_product_info: []
     }
   }
 
@@ -22,10 +24,8 @@ class App extends React.Component {
         {
           view: 'product',
           current_product_info: product_info,
-          current_main_image: product_info[0].image_loc
         }
-      )
-      // debugger;
+      );
     })
     .then(() => {
       console.log(current_product_info);
@@ -37,16 +37,16 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div>
         <h1>react is working now</h1>
-        <div>
+        <div className={style.container}>
           {this.state.current_product_info.length.length === 0 &&
             <h1>no product info from DB</h1>
           }
           {this.state.current_product_info.length > 0 &&
             <Thumbnails
             current_product_info={this.state.current_product_info}
-            view={this.state.view}/>
+            />
           }
         </div>
       </div>

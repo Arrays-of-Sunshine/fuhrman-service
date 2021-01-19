@@ -1,5 +1,6 @@
 const path = require('path');
 
+
 module.exports = {
   entry: './client/index.js',
   mode: "development",
@@ -22,6 +23,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
+        exclude: /(node_modules)/,
         use: [
           'style-loader',
           {

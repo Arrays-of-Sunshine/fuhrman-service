@@ -1,14 +1,15 @@
-#app {
-  font-family: 'Courier New', Courier, monospace;
+body {
+  color:darkcyan;
 }
 
 .container {
   display: grid;
-  grid-template-columns: 95px auto;
+  grid-template-columns: 95px 475px;
   grid-template-rows: 95px 95px 95px 95px 95px;
-  /* grid-template-areas: */
   border: 5px;
   border-color: black;
+  column-gap: 5px;
+  row-gap: 5px;
 }
 
 .mainImageContainer {
@@ -16,20 +17,37 @@
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 1;
-  grid-row-end: 5;
+  grid-row-end: 6;
   border: 5px;
   border-color: black;
+  background-color: olivedrab;
+  overflow:hidden;
+  object-fit:cover;
 }
 
-.thumnailContainer-1 {
+.thumnailContainer {
+  display: grid;
+  background-color: greenyellow;
+  overflow: hidden;
+  object-fit: contain;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+/* keeping these css styles for future set up */
+/*
+.container > .thumnailContainer_1 {
   display: grid;
   grid-column-start: 1;
   grid-row-start: 1;
-  border: 5px;
-  border-color: rgb(0, 0, 0);
+  border: 5px solid blue;
+  color:darkgreen;
+  background-color: greenyellow;
+  overflow: hidden;
+  object-fit: cover;
 }
 
-.thumnailContainer-2 {
+.container > .thumnailContainer_2 {
   display: grid;
   grid-column-start: 1;
   grid-row-start: 2;
@@ -37,7 +55,7 @@
   border-color: rgb(0, 0, 0);
 }
 
-.thumnailContainer-3 {
+.container > .thumnailContainer_3 {
   display: grid;
   grid-column-start: 1;
   grid-row-start: 3;
@@ -45,7 +63,7 @@
   border-color: rgb(0, 0, 0);
 }
 
-.thumnailContainer-4 {
+.thumnailContainer_4 {
   display: grid;
   grid-column-start: 1;
   grid-row-start: 4;
@@ -53,13 +71,13 @@
   border-color: black;
 }
 
-.thumnailContainer-5 {
+.thumnailContainer_5 {
   display: grid;
   grid-column-start: 1;
   grid-row-start: 5;
   border: 5px;
   border-color: black;
-}
+} */
 
 
 

@@ -1,0 +1,44 @@
+{
+  "name": "",
+  "version": "",
+  "description": "service that renders main product images",
+  "author": "K Sakama",
+  "license": "",
+  "engines": {
+    "node": ">=6.13.0"
+  },
+  "scripts": {
+    "start": "nodemon server/index-sv.js",
+    "build": "webpack --watch",
+    "seed": "node seed.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "airbnb-browser-shims": "^3.3.0",
+    "axios": "^0.21.1",
+    "express": "^4.17.1",
+    "faker": "^5.1.0",
+    "jest-environment-enzyme": "^7.1.2",
+    "jest-enzyme": "^7.1.2",
+    "mysql": "^2.18.1",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1",
+    "sequelize": "^6.3.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-react": "^7.12.10",
+    "babel-loader": "^8.2.2",
+    "babel-preset-airbnb": "^5.0.0",
+    "css-loader": "^5.0.1",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.7",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.15.0",
+    "webpack-cli": "^4.3.1"
+  }
+}

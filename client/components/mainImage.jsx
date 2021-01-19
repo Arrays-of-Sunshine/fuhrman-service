@@ -7,7 +7,6 @@ const MainImage = (props) => {
   let productImg = props.current_main_image;
   let product_info = props.current_product_info;
 
-
   return (
     <div
       className={style.mainImageContainer}

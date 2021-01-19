@@ -20,7 +20,7 @@ fakeDatamaker = () => {
         `http://placekitten.com/${randomSize}/${randomSize}`
       ];
 
-    //one product has 5 images
+    //5 images per product (& 5 images share the same product name)
     if (i % 5 === 0) {
       product_id++;
       productName = faker.commerce.productName()

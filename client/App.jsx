@@ -27,6 +27,7 @@ class App extends React.Component {
         }
       );
     })
+    //this is just so I can check what is coming back from DB. will delete.
     .then(() => {
       console.log(current_product_info);
     })

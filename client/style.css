@@ -6,7 +6,6 @@ body {
   display: grid;
   grid-template-columns: 95px 475px;
   grid-template-rows: 95px 95px 95px 95px 95px;
-  /* grid-template-areas: */
   border: 5px;
   border-color: black;
   column-gap: 5px;
@@ -28,8 +27,6 @@ body {
 
 .thumnailContainer {
   display: grid;
-  /* grid-column-start: 1;
-  grid-row-start: 1; */
   background-color: greenyellow;
   overflow: hidden;
   object-fit: contain;

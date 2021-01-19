@@ -12,8 +12,8 @@ class Thumbnails extends React.Component {
     this.handleThumbnailClick = this.handleThumbnailClick.bind(this);
   }
 
+  //to avoid error when the page is loading.
   componentDidMount() {
-    // debugger;
     if (this.state.current_main_image === '') {
       this.setState(
         {
@@ -23,6 +23,7 @@ class Thumbnails extends React.Component {
     }
   }
 
+  //changed the main image when a thumbnail is clicked
   handleThumbnailClick (event) {
     event.preventDefault();
     this.setState(
@@ -30,13 +31,13 @@ class Thumbnails extends React.Component {
     )
   }
 
+  //takes in the whole product info. the default main image is always index @ 0;
   render() {
     let thumbs = [];
     let id = 1;
 
     this.props.current_product_info.map((product) => {
       let styleClassName = `thumbnailContainer_${id}`
-      // debugger;
       thumbs.push(
         <div
           className={style.thumnailContainer}

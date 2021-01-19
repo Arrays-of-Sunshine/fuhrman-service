@@ -9,7 +9,7 @@ class Thumbnails extends React.Component {
     this.state = {
       current_main_image: '',
     }
-
+    this.handleThumbnailClick = this.handleThumbnailClick.bind(this);
   }
 
   componentDidMount() {
@@ -23,16 +23,25 @@ class Thumbnails extends React.Component {
     }
   }
 
+  handleThumbnailClick (event) {
+    event.preventDefault();
+    this.setState(
+      {current_main_image: event.target.src}
+    )
+  }
+
   render() {
     let thumbs = [];
     let id = 1;
-    console.log(style);
 
     this.props.current_product_info.map((product) => {
       let styleClassName = `thumbnailContainer_${id}`
       // debugger;
       thumbs.push(
-        <div className={style.thumnailContainer}>
+        <div
+          className={style.thumnailContainer}
+          onClick={(event) => this.handleThumbnailClick(event)}
+        >
           <img
             key={product.product_name + id}
             src={product.image_loc}></img>
@@ -42,7 +51,7 @@ class Thumbnails extends React.Component {
     })
 
     return (
-      <div>
+      <div className={style.container}>
         <MainImage
           current_main_image={this.state.current_main_image}
           current_product_info={this.props.current_product_info}

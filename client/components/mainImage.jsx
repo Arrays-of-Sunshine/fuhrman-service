@@ -3,14 +3,17 @@ import App from '../App.jsx';
 import style from '../style.css';
 
 const MainImage = (props) => {
+  // debugger;
   let productImg = props.current_main_image;
   let product_info = props.current_product_info;
 
 
   return (
-    <div className={style.mainImageContainer}>
+    <div
+      className={style.mainImageContainer}
+      key={product_info.product_name + 'main'}
+      >
       <img
-        key={product_info.product_name + 'main'}
         src={productImg}></img>
     </div>
   );

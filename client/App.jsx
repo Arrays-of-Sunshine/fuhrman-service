@@ -38,8 +38,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>react is working now</h1>
-        <div className={style.container}>
+        <h1>react is working meow</h1>
+        <div >
           {this.state.current_product_info.length.length === 0 &&
             <h1>no product info from DB</h1>
           }

@@ -10,7 +10,7 @@ fakeDatamaker = () => {
   let productName = faker.commerce.productName();
 
   for (let i = 1; i <= 100; i++) {
-    randomSize = Math.floor(Math.random()*(400-90)+90);
+    randomSize = Math.floor(Math.random()*(600-400)+400);
     let output =
       [
         product_id,

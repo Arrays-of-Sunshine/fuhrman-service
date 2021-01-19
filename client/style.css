@@ -4,12 +4,13 @@ body {
 
 .container {
   display: grid;
-  grid-template-columns: 95px auto;
+  grid-template-columns: 95px 475px;
   grid-template-rows: 95px 95px 95px 95px 95px;
   /* grid-template-areas: */
   border: 5px;
   border-color: black;
-  background-color: burlywood;
+  column-gap: 5px;
+  row-gap: 5px;
 }
 
 .mainImageContainer {
@@ -17,12 +18,12 @@ body {
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 1;
-  grid-row-end: 5;
+  grid-row-end: 6;
   border: 5px;
   border-color: black;
-  background-color: yellow;
-  overflow: hidden;
-  object-fit: cover;
+  background-color: olivedrab;
+  overflow:hidden;
+  object-fit:cover;
 }
 
 .thumnailContainer {

@@ -38,4 +38,6 @@ module.exports.connection = connection;
 // | media_type   | varchar(10)  | YES  |     | NULL    |                |
 // | image_desc   | varchar(240) | YES  |     | NULL    |                |
 // | image_loc    | varchar(240) | YES  |     | NULL    |                |
+// | brand_name   | varchar(60)  | YES  |     | NULL    |                |
+// | category     | varchar(60)  | YES  |     | NULL    |                |
 // +--------------+--------------+------+-----+---------+----------------+

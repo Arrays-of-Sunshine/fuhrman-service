@@ -1,5 +1,6 @@
 body {
-  color:darkcyan;
+  color: black;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .container {
@@ -22,18 +23,30 @@ body {
   border-color: black;
   background-color: olivedrab;
   overflow:hidden;
-  object-fit:cover;
 }
 
-.thumnailContainer {
+.mainImageContainer img {
+  height: 100%;
+  width: 100%;
+}
+
+.thumbnailContainer {
   display: grid;
   background-color: greenyellow;
   overflow: hidden;
-  object-fit: contain;
-  height: 100%;
-  width: 100%;
   box-sizing: border-box;
 }
+
+.thumbnailContainer img {
+  height: 100%;
+  width: 100%;
+}
+
+.thumbnailContainer clicked {
+  height: 100%;
+  width: 100%;
+}
+
 /* keeping these css styles for future set up */
 /*
 .container > .thumnailContainer_1 {

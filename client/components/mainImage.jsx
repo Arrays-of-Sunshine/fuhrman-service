@@ -44,6 +44,7 @@ const MainImageContainer = styled.section`
   overflow-x: auto;
   overflow: hidden;
   flex-wrap: nowrap;
+  flex-direction: row;
   `;
 
 const MainImageSlide = styled.div`

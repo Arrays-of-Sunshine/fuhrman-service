@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import {keyframes} from 'styled-components';
 
 class MainImage extends React.Component {
   //for future adjustments, I am making this a class
@@ -11,9 +10,10 @@ class MainImage extends React.Component {
   }
 
   render () {
-    let product_info = this.props.product_info;
+    let product_data = this.props.product_data;
     let mainImages = [];
-    product_info.map((product, i) => {
+
+    product_data.map((product, i) => {
       let productImg = product.image_loc;
       mainImages.push(
         <MainImageSlide id={`main_image_${i}`}>
@@ -27,7 +27,7 @@ class MainImage extends React.Component {
 
     return (
           <MainImageContainer
-            key={product_info.product_name + 'main'}
+            key={product_data.product_name + 'main'}
           >
             {mainImages}
           </MainImageContainer>
@@ -46,7 +46,7 @@ const MainImageContainer = styled.section`
   flex-wrap: nowrap;
   `;
 
-  const MainImageSlide = styled.div`
+const MainImageSlide = styled.div`
   scroll-snap-align: start;
   margin: 0px;
   border: 0px;
@@ -65,12 +65,12 @@ const MainImageContainer = styled.section`
   flex-shrink: 0;
   `
 
-  const Image = styled.img`
+const Image = styled.img`
   position: relative;
   display: inline-flex;
   height: 100%;
   width: 100%;
   padding: 5px;
-  border: 1px solid;
+  border: 1px dotted;
   box-sizing: border-box;
 `;

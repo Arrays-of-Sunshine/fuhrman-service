@@ -8,7 +8,7 @@ class App extends React.Component {
     super();
     this.state = {
       view: "view",
-      product_info: []
+      product_data: []
     }
   }
 
@@ -18,11 +18,11 @@ class App extends React.Component {
     axios.get(`/${randomProduct}`)
     .then((res) => {
       console.log(res);
-      let product_info = res.data;
+      let product_data = res.data;
       this.setState(
         {
           view: 'product',
-          product_info: product_info,
+          product_data: product_data,
         }
       );
     })
@@ -36,17 +36,17 @@ class App extends React.Component {
     return (
       <Body>
         <h1>react is working now</h1>
-          {this.state.product_info.length > 0 &&
-            <div><h2><em>{this.state.product_info[0].product_name}</em></h2><p></p>
-            <h5><u>Shop all {this.state.product_info[0].brand_name}</u></h5></div>
+          {this.state.product_data.length > 0 &&
+            <div><h2><em>{this.state.product_data[0].product_name}</em></h2><p></p>
+            <h5><u>Shop all {this.state.product_data[0].brand_name}</u></h5></div>
           }
         <div >
-          {this.state.product_info.length === 0 &&
+          {this.state.product_data.length === 0 &&
             <h1>no product info from DB</h1>
           }
-          {this.state.product_info.length > 0 &&
+          {this.state.product_data.length > 0 &&
             <Thumbnails
-            product_info={this.state.product_info}
+            product_data={this.state.product_data}
             />
           }
         </div>

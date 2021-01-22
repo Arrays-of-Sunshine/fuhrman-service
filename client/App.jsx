@@ -1,58 +1,63 @@
-// import path from 'path';
 import React from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import Thumbnails from './components/thumbnails.jsx';
-import style from './style.css';
-
 
 class App extends React.Component {
   constructor () {
     super();
     this.state = {
       view: "view",
-      current_product_info: []
+      product_info: []
     }
   }
 
   //`/products/${id}/product_images`
   componentDidMount() {
-    axios.get('/2')
+    let randomProduct = Math.floor(Math.random()*50)
+    axios.get(`/${randomProduct}`)
     .then((res) => {
       console.log(res);
       let product_info = res.data;
       this.setState(
         {
           view: 'product',
-          current_product_info: product_info,
+          product_info: product_info,
         }
       );
-    })
-    //this is just so I can check what is coming back from DB. will delete.
-    .then(() => {
-      console.log(current_product_info);
     })
     .catch((err) => {
       console.log(err);
     })
   }
 
+
   render() {
     return (
-      <div>
-        <h1>react is working meow</h1>
+      <Body>
+        <h1>react is working now</h1>
+          {this.state.product_info.length > 0 &&
+            <div><h2><em>{this.state.product_info[0].product_name}</em></h2><p></p>
+            <h5><u>Shop all {this.state.product_info[0].brand_name}</u></h5></div>
+          }
         <div >
-          {this.state.current_product_info.length.length === 0 &&
+          {this.state.product_info.length === 0 &&
             <h1>no product info from DB</h1>
           }
-          {this.state.current_product_info.length > 0 &&
+          {this.state.product_info.length > 0 &&
             <Thumbnails
-            current_product_info={this.state.current_product_info}
+            product_info={this.state.product_info}
             />
           }
         </div>
-      </div>
+      </Body>
     );
   }
 }
 
 export default App;
+
+const Body = styled.div`
+  color: black;
+  font-family: Helvetica, sans-serif;
+`

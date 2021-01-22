@@ -1,13 +1,14 @@
 import React from 'react';
-import App from '../App.jsx';
-import style from '../style.css';
+import styled from 'styled-components';
 import MainImage from './mainImage.jsx';
 
 class Thumbnails extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      current_main_image: '',
+      current_main_image: 0,
+      activeThumbnail: [false, false, false, false, false],
+
     }
     this.handleThumbnailClick = this.handleThumbnailClick.bind(this);
   }
@@ -17,51 +18,73 @@ class Thumbnails extends React.Component {
     if (this.state.current_main_image === '') {
       this.setState(
         {
-          current_main_image: this.props.current_product_info[0].image_loc
+          current_main_image: this.props.product_info[0].image_loc
         }
       );
     }
   }
 
   //changed the main image when a thumbnail is clicked
-  handleThumbnailClick (event) {
+  handleThumbnailClick (event, index) {
     event.preventDefault();
+    console.log('clicked', index);
     this.setState(
-      {current_main_image: event.target.src}
+      {current_main_image: index}
     )
-  }
+    console.log(this.state.current_main_image)
+  };
 
-  //takes in the whole product info. the default main image is always index @ 0;
   render() {
     let thumbs = [];
-    let id = 1;
-
-    this.props.current_product_info.map((product) => {
-      let styleClassName = `thumbnailContainer_${id}`
+    this.props.product_info.map((product, i) => {
       thumbs.push(
-        <div
-          className={style.thumnailContainer}
-          onClick={(event) => this.handleThumbnailClick(event)}
-        >
-          <img
-            key={product.product_name + id}
-            src={product.image_loc}></img>
-        </div>
+        <Thumbnail href={`#main_image_${i}`}>
+          <Image
+            key={product.ID}
+            src={product.image_loc}></Image>
+        </Thumbnail>
       )
-      id++;
     })
 
     return (
-      <div className={style.container}>
+      <Container>
+        <ThumbnailContainer>
+          {thumbs}
+        </ThumbnailContainer>
         <MainImage
           current_main_image={this.state.current_main_image}
-          current_product_info={this.props.current_product_info}
-          />
-        {thumbs}
-      </div>
-    )
+          product_info={this.props.product_info}
+          index={this.state.current_main_image}
+        />
+      </Container>
+    );
   }
-
 }
 
 export default Thumbnails;
+
+const Container = styled.div`
+  width: 600px;
+  height: 485px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+`;
+
+const ThumbnailContainer = styled.aside`
+  flex: 1;
+  flex-direction: column;
+  height: 475px;
+`
+
+const Thumbnail = styled.a`
+  display: inline-flex;
+  position: relative;
+  background-color: greenyellow;
+  box-sizing: border-box;
+`;
+
+const Image = styled.img`
+  height: 95px;
+  width: 95px;
+`;

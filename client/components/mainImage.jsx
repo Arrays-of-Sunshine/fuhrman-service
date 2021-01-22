@@ -14,23 +14,20 @@ class MainImage extends React.Component {
     }
   }
 
-  // debugger;
-
   render () {
     let product_info = this.props.product_info;
     let mainImages = [];
-    let index = 0;
-    product_info.map((product) => {
+    product_info.map((product, i) => {
       let productImg = product.image_loc;
       // debugger;
       mainImages.push(
-        <Image
-          key={product.product_name + product.ID}
-          name={index}
-          src={productImg}
-        ></Image>
+        <MainImageSlide id={`main_image_${i}`}>
+          <Image
+            key={product.product_name + product.ID}
+            src={productImg}
+          ></Image>
+        </MainImageSlide>
       )
-      index++;
     })
 
     return (
@@ -45,38 +42,37 @@ class MainImage extends React.Component {
 
 export default MainImage
 
-const Container = styled.div`
-  display: grid;
-  grid-template-columns: 95px 475px;
-  grid-template-rows: 95px 95px 95px 95px 95px;
-  border: 5px;
-  border-color: black;
-  column-gap: 5px;
-  row-gap: 5px;
-`;
-
-const MainImageContainer = styled.div`
-  display: grid;
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 1;
-  grid-row-end: 6;
-  border: 5px;
-  border-color: black;
-  background-color: olivedrab;
-  overflow: scroll;
+const MainImageContainer = styled.section`
+  flex: 4
   scroll-snap-type: x mandatory;
-  scroll-behaviror: smooth;
-  scroll-snap-align: start;
+  scroll-behavior: smooth;
+  overflow-x: auto;
+  overflow: hidden;
+  flex-wrap: nowrap;
   `;
 
-const Image = styled.img`
+  const MainImageSlide = styled.div`
+  scroll-snap-align: start;
+  margin: 0px;
+  border: 0px;
+  background: #eee;
+  transform-origin: center center;
+  transform: scale(1);
+  transition: transform 0.5s;
   position: relative;
-  display: inline;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  margin-left: 10px;
+
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  `
+
+  const Image = styled.img`
+  position: relative;
+  display: inline-flex;
   height: 100%;
   width: 100%;
-  top: ${props => props.name*-475 || 0}px
 `;
-
-
-

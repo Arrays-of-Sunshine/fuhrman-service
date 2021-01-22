@@ -37,26 +37,27 @@ class Thumbnails extends React.Component {
 
   render() {
     let thumbs = [];
-    this.props.product_info.map((product) => {
+    this.props.product_info.map((product, i) => {
+      // <a href="#slide-1">1</a>
       thumbs.push(
-        <ThumbNailContainer
-          onClick={(event) => this.handleThumbnailClick(event, product.image_num)}
-          >
+        <Thumbnail href={`#main_image_${i}`}>
           <Image
             key={product.ID}
             src={product.image_loc}></Image>
-        </ThumbNailContainer>
+        </Thumbnail>
       )
     })
 
     return (
       <Container>
+        <ThumbnailContainer>
+          {thumbs}
+        </ThumbnailContainer>
         <MainImage
           current_main_image={this.state.current_main_image}
           product_info={this.props.product_info}
           index={this.state.current_main_image}
-          />
-        {thumbs}
+        />
       </Container>
     );
   }
@@ -65,34 +66,57 @@ class Thumbnails extends React.Component {
 export default Thumbnails;
 
 const Container = styled.div`
-  display: grid;
-  grid-template-columns: 95px 475px;
-  grid-template-rows: 95px 95px 95px 95px 95px;
-  border: 5px;
-  border-color: black;
-  column-gap: 5px;
-  row-gap: 5px;
-`;
-const MainImageContainer = styled.div`
-  display: grid;
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 1;
-  grid-row-end: 6;
-  border: 5px;
-  border-color: black;
-  background-color: olivedrab;
+  width: 600px;
+  height: 475px;
   overflow: hidden;
+  display: flex;
+  flex-direction: row;
 `;
 
-const ThumbNailContainer = styled.div`
-  display: grid;
+const ThumbnailContainer = styled.aside`
+  flex: 1;
+  flex-direction: column;
+  height: 475px;
+`
+
+const Thumbnail = styled.a`
+  display: inline-flex;
+  position: relative;
   background-color: greenyellow;
-  overflow: scroll;
   box-sizing: border-box;
 `;
 
 const Image = styled.img`
-  height: 100%;
-  width: 100%;
+  height: 95px;
+  width: 95px;
 `;
+
+
+
+// display: grid;
+  // grid-template-columns: 95px 475px;
+  // grid-template-rows: 95px 95px 95px 95px 95px;
+  // border: 5px;
+  // border-color: black;
+  // column-gap: 5px;
+  // row-gap: 5px;
+
+// const MainImageContainer = styled.div`
+//   display: grid;
+//   grid-column-start: 2;
+//   grid-column-end: 3;
+//   grid-row-start: 1;
+//   grid-row-end: 6;
+//   border: 5px;
+//   border-color: black;
+//   background-color: olivedrab;
+//   overflow: hidden;
+// `;
+
+
+
+// display: inline-flex;
+// position: relative;
+
+// border-radius: 50%;
+

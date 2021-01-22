@@ -1,4 +1,3 @@
-// import path from 'path';
 import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
@@ -27,10 +26,6 @@ class App extends React.Component {
         }
       );
     })
-    //this is just so I can check what is coming back from DB. will delete.
-    .then(() => {
-      console.log(product_info);
-    })
     .catch((err) => {
       console.log(err);
     })
@@ -45,7 +40,6 @@ class App extends React.Component {
             <div><h2><em>{this.state.product_info[0].product_name}</em></h2><p></p>
             <h5><u>Shop all {this.state.product_info[0].brand_name}</u></h5></div>
           }
-
         <div >
           {this.state.product_info.length === 0 &&
             <h1>no product info from DB</h1>

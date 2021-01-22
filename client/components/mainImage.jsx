@@ -1,16 +1,12 @@
 import React from 'react';
-import App from '../App.jsx';
 import styled from 'styled-components';
 import {keyframes} from 'styled-components';
-// import {motion} from 'framer-motion';
-
 
 class MainImage extends React.Component {
   //for future adjustments, I am making this a class
   constructor (props) {
     super(props);
     this.state = {
-
     }
   }
 
@@ -19,7 +15,6 @@ class MainImage extends React.Component {
     let mainImages = [];
     product_info.map((product, i) => {
       let productImg = product.image_loc;
-      // debugger;
       mainImages.push(
         <MainImageSlide id={`main_image_${i}`}>
           <Image
@@ -75,4 +70,7 @@ const MainImageContainer = styled.section`
   display: inline-flex;
   height: 100%;
   width: 100%;
+  padding: 5px;
+  border: 1px solid;
+  box-sizing: border-box;
 `;

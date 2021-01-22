@@ -1,5 +1,4 @@
 import React from 'react';
-// import App from '../App.jsx';
 import styled from 'styled-components';
 import MainImage from './mainImage.jsx';
 
@@ -38,7 +37,6 @@ class Thumbnails extends React.Component {
   render() {
     let thumbs = [];
     this.props.product_info.map((product, i) => {
-      // <a href="#slide-1">1</a>
       thumbs.push(
         <Thumbnail href={`#main_image_${i}`}>
           <Image
@@ -67,7 +65,7 @@ export default Thumbnails;
 
 const Container = styled.div`
   width: 600px;
-  height: 475px;
+  height: 485px;
   overflow: hidden;
   display: flex;
   flex-direction: row;
@@ -90,33 +88,3 @@ const Image = styled.img`
   height: 95px;
   width: 95px;
 `;
-
-
-
-// display: grid;
-  // grid-template-columns: 95px 475px;
-  // grid-template-rows: 95px 95px 95px 95px 95px;
-  // border: 5px;
-  // border-color: black;
-  // column-gap: 5px;
-  // row-gap: 5px;
-
-// const MainImageContainer = styled.div`
-//   display: grid;
-//   grid-column-start: 2;
-//   grid-column-end: 3;
-//   grid-row-start: 1;
-//   grid-row-end: 6;
-//   border: 5px;
-//   border-color: black;
-//   background-color: olivedrab;
-//   overflow: hidden;
-// `;
-
-
-
-// display: inline-flex;
-// position: relative;
-
-// border-radius: 50%;
-

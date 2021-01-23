@@ -38,19 +38,27 @@ class MainImage extends React.Component {
 export default MainImage
 
 const MainImageContainer = styled.section`
-  flex: 4
+  display: flex;
+  flex-direction: row;
+
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   overflow-x: auto;
   overflow: hidden;
   flex-wrap: nowrap;
-  flex-direction: row;
+  margin-left: 10px;
+
+  height: 495px
+  width: 485px;
   `;
 
 const MainImageSlide = styled.div`
   scroll-snap-align: start;
   margin: 0px;
   border: 0px;
+  height: 100%;
+  width: 100%;
+
   background: #eee;
   transform-origin: center center;
   transform: scale(1);
@@ -59,7 +67,7 @@ const MainImageSlide = styled.div`
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  margin-left: 10px;
+  object-fit: cover;
 
   display: flex;
   flex-direction: row;
@@ -74,4 +82,5 @@ const Image = styled.img`
   padding: 5px;
   border: 1px dotted;
   box-sizing: border-box;
+  object-fit: cover;
 `;

@@ -55,12 +55,20 @@ class Thumbnails extends React.Component {
         //if 5th image exists, the image should have a dark overlay
         if (i === 4) {
           thumbs.push(
-            <Thumbnail href={`#main_image_${i}`}>
+            <Thumbnail
+              onClick={(e) => this.props.overlayHandleClick(e)}
+
+            >
               <Image
                 key={product_data[i].ID}
-                src={product_data[i].image_loc}>
+                src={product_data[i].image_loc}
+
+                >
                 </Image>
-                <Overlay>{numOfImage}</Overlay>
+                <Overlay
+
+                >
+                  {numOfImage}</Overlay>
             </Thumbnail>
           )
         } else {
@@ -111,10 +119,10 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
   background: white;
+  z-index: 1;
 `;
 
 const ThumbnailContainer = styled.aside`
-  flex: 1;
   flex-direction: column;
   height: 475px;
 `

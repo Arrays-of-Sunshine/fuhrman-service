@@ -35,7 +35,7 @@ body {
   background-color: greenyellow;
   overflow: hidden;
   box-sizing: border-box;
-  background-color: ;
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .thumbnailContainer img {
@@ -46,6 +46,7 @@ body {
 .thumbnailContainer clicked {
   height: 100%;
   width: 100%;
+  ;
 }
 
 /* keeping these css styles for future set up */

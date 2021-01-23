@@ -24,6 +24,7 @@ connection.getProductInfo = (product_id, callback) => {
       callback(queryData);
     }
   });
+  connection.end();
 };
 
 module.exports.connection = connection;
@@ -38,6 +39,6 @@ module.exports.connection = connection;
 // | media_type   | varchar(10)  | YES  |     | NULL    |                |
 // | image_desc   | varchar(240) | YES  |     | NULL    |                |
 // | image_loc    | varchar(240) | YES  |     | NULL    |                |
-// | brand_name   | varchar(60)  | YES  |     | NULL    |                |
+// | company_name   | varchar(60)  | YES  |     | NULL    |                |
 // | category     | varchar(60)  | YES  |     | NULL    |                |
 // +--------------+--------------+------+-----+---------+----------------+

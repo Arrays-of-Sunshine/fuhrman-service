@@ -37,3 +37,8 @@ npm install -g webpack
 npm install
 ```
 
+## seeding process:
+from the command line:
+  mysql -u root < schema.sql
+  npm run seed
+

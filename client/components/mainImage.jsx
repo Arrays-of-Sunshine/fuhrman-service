@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import {keyframes} from 'styled-components';
 
 class MainImage extends React.Component {
   //for future adjustments, I am making this a class
@@ -10,10 +9,11 @@ class MainImage extends React.Component {
     }
   }
 
-  render () {
-    let product_info = this.props.product_info;
+  render() {
+    let product_data = this.props.product_data;
     let mainImages = [];
-    product_info.map((product, i) => {
+
+    product_data.map((product, i) => {
       let productImg = product.image_loc;
       mainImages.push(
         <MainImageSlide id={`main_image_${i}`}>
@@ -26,11 +26,11 @@ class MainImage extends React.Component {
     })
 
     return (
-          <MainImageContainer
-            key={product_info.product_name + 'main'}
-          >
-            {mainImages}
-          </MainImageContainer>
+      <MainImageContainer
+        key={product_data.product_name + 'main'}
+      >
+        {mainImages}
+      </MainImageContainer>
     );
   }
 }
@@ -38,18 +38,27 @@ class MainImage extends React.Component {
 export default MainImage
 
 const MainImageContainer = styled.section`
-  flex: 4
+  display: flex;
+  flex-direction: row;
+
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   overflow-x: auto;
   overflow: hidden;
   flex-wrap: nowrap;
+  margin-left: 10px;
+
+  height: 495px
+  width: 485px;
   `;
 
-  const MainImageSlide = styled.div`
+const MainImageSlide = styled.div`
   scroll-snap-align: start;
   margin: 0px;
   border: 0px;
+  height: 100%;
+  width: 100%;
+
   background: #eee;
   transform-origin: center center;
   transform: scale(1);
@@ -58,19 +67,20 @@ const MainImageContainer = styled.section`
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  margin-left: 10px;
+  object-fit: cover;
 
   display: flex;
   flex-direction: row;
   flex-shrink: 0;
   `
 
-  const Image = styled.img`
+const Image = styled.img`
   position: relative;
   display: inline-flex;
   height: 100%;
   width: 100%;
   padding: 5px;
-  border: 1px solid;
+  border: 1px dotted;
   box-sizing: border-box;
+  object-fit: cover;
 `;

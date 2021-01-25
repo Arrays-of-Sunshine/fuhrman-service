@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import MainImage from './mainImage.jsx';
+import MainImage from './MainImage.jsx';
 
 class Thumbnails extends React.Component {
   constructor (props) {
@@ -8,7 +8,6 @@ class Thumbnails extends React.Component {
     this.state = {
       current_main_image: 0,
       activeThumbnail: [false, false, false, false, false],
-
     }
     this.handleThumbnailClick = this.handleThumbnailClick.bind(this);
   }
@@ -18,7 +17,7 @@ class Thumbnails extends React.Component {
     if (this.state.current_main_image === '') {
       this.setState(
         {
-          current_main_image: this.props.product_info[0].image_loc
+          current_main_image: this.props.product_data[0].image_loc
         }
       );
     }
@@ -27,24 +26,61 @@ class Thumbnails extends React.Component {
   //changed the main image when a thumbnail is clicked
   handleThumbnailClick (event, index) {
     event.preventDefault();
-    console.log('clicked', index);
     this.setState(
       {current_main_image: index}
     )
-    console.log(this.state.current_main_image)
   };
 
   render() {
+    let something;
     let thumbs = [];
-    this.props.product_info.map((product, i) => {
-      thumbs.push(
-        <Thumbnail href={`#main_image_${i}`}>
-          <Image
-            key={product.ID}
-            src={product.image_loc}></Image>
-        </Thumbnail>
-      )
-    })
+    let product_data = this.props.product_data;
+
+    //thumbnail only takes in 5 images
+    if (product_data.length >= 4) {
+      for (let i = 0; i <= 4; i++) {
+        let productImg = product_data[i].image_loc;
+        let numOfImage = `+${product_data.length-5} more`
+
+        //if 5th image exists, the image should have a dark overlay with an event listener
+        if (i === 4) {
+          thumbs.push(
+            <Thumbnail
+              onClick={(e) => this.props.overlayHandleClick(e)}
+            >
+              <Image
+                key={product_data[i].ID}
+                src={product_data[i].image_loc}
+                >
+              </Image>
+              <Overlay>
+                {numOfImage}
+              </Overlay>
+            </Thumbnail>
+          )
+        } else {
+          thumbs.push(
+            <Thumbnail href={`#main_image_${i}`}>
+              <Image
+                key={product_data[i].ID}
+                src={product_data[i].image_loc}></Image>
+            </Thumbnail>
+          )
+        }
+      }
+    } else {
+      for (let i = 0; i < product_data[i].length; i++) {
+        let productImg = product_data[i].image_loc;
+        thumbs.push(
+          <Thumbnail href={`#main_image_${i}`}>
+            <Image
+              key={product_data[i].ID}
+              src={product_data[i].image_loc}>
+              </Image>
+          </Thumbnail>
+        )
+      }
+    }
 
     return (
       <Container>
@@ -53,7 +89,7 @@ class Thumbnails extends React.Component {
         </ThumbnailContainer>
         <MainImage
           current_main_image={this.state.current_main_image}
-          product_info={this.props.product_info}
+          product_data={this.props.product_data}
           index={this.state.current_main_image}
         />
       </Container>
@@ -65,14 +101,15 @@ export default Thumbnails;
 
 const Container = styled.div`
   width: 600px;
-  height: 485px;
+  height: 495px;
   overflow: hidden;
   display: flex;
   flex-direction: row;
+  background: white;
+  z-index: 1;
 `;
 
 const ThumbnailContainer = styled.aside`
-  flex: 1;
   flex-direction: column;
   height: 475px;
 `
@@ -87,4 +124,16 @@ const Thumbnail = styled.a`
 const Image = styled.img`
   height: 95px;
   width: 95px;
+`;
+
+const Overlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  text-align: center;
+  line-height: 95px;
 `;

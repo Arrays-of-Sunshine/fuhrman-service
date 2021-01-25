@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import Thumbnails from './components/thumbnails.jsx';
-import Large_product_display from './components/Large_product_display.jsx';
+import Thumbnails from './components/Thumbnails.jsx';
+import LargeProductDisplay from './components/LargeProductDisplay.jsx';
 
 class App extends React.Component {
   constructor () {
@@ -20,7 +20,6 @@ class App extends React.Component {
     let randomProduct = Math.floor(Math.random()*50)
     axios.get(`/${randomProduct}`)
     .then((res) => {
-      console.log(res);
       let product_data = res.data;
       this.setState(
         {
@@ -29,9 +28,6 @@ class App extends React.Component {
         }
       );
     })
-    .then((data) => {
-      console.log(this.state.product_data)
-    })
     .catch((err) => {
       console.log(err);
     })
@@ -39,17 +35,27 @@ class App extends React.Component {
 
   overlayHandleClick(e) {
     e.preventDefault();
-    console.log(e);
-    this.setState({
-      overlay_display: 'block'
-    })
-    console.log(this.state.overlay_display)
-
+    if (this.state.overlay_display === 'none') {
+      this.setState({
+        overlay_display: 'block'
+      })
+    } else {
+      this.setState({
+        overlay_display: 'none'
+      })
+    }
   }
 
   render() {
     return (
       <div>
+         {this.state.product_data.length > 0 &&
+          <LargeProductDisplay
+          display={this.state.overlay_display}
+          product_data={this.state.product_data}
+          overlayHandleClick={this.overlayHandleClick}
+          />
+         }
         <h1>react is working now</h1>
           {this.state.product_data.length > 0 &&
             <div>
@@ -60,10 +66,6 @@ class App extends React.Component {
               <p></p>
               <h5><u>Shop all {this.state.product_data[0].company_name}</u></h5>
               <p></p>
-              <Large_product_display
-                display={this.state.overlay_display}
-                product_data={this.state.product_data}
-              />
               <Thumbnails
                 product_data={this.state.product_data}
                 overlayHandleClick={this.overlayHandleClick}
@@ -79,6 +81,7 @@ class App extends React.Component {
     );
   }
 }
+
 
 export default App;
 

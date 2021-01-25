@@ -54,7 +54,7 @@ fakeDataMaker = () => {
 
   Promise.all(dbpromises)
     .finally((result) => {
-      // db.end()
+      db.end()
       console.log('seeding complete');
     })
     .catch((err) => {

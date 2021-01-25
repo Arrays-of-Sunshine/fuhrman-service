@@ -24,21 +24,6 @@ connection.getProductInfo = (product_id, callback) => {
       callback(queryData);
     }
   });
-  connection.end();
 };
 
 module.exports.connection = connection;
-
-// mysql 5.7
-// +--------------+--------------+------+-----+---------+----------------+
-// | Field        | Type         | Null | Key | Default | Extra          |
-// +--------------+--------------+------+-----+---------+----------------+
-// | ID           | int(11)      | NO   | PRI | NULL    | auto_increment |
-// | product_id   | varchar(4)   | YES  |     | NULL    |                |
-// | product_name | varchar(60)  | YES  |     | NULL    |                |
-// | media_type   | varchar(10)  | YES  |     | NULL    |                |
-// | image_desc   | varchar(240) | YES  |     | NULL    |                |
-// | image_loc    | varchar(240) | YES  |     | NULL    |                |
-// | company_name   | varchar(60)  | YES  |     | NULL    |                |
-// | category     | varchar(60)  | YES  |     | NULL    |                |
-// +--------------+--------------+------+-----+---------+----------------+

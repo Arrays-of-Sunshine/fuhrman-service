@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import MainImage from './mainImage.jsx';
+import MainImage from './MainImage.jsx';
 
 class Thumbnails extends React.Component {
   constructor (props) {
@@ -8,7 +8,6 @@ class Thumbnails extends React.Component {
     this.state = {
       current_main_image: 0,
       activeThumbnail: [false, false, false, false, false],
-
     }
     this.handleThumbnailClick = this.handleThumbnailClick.bind(this);
   }
@@ -27,48 +26,36 @@ class Thumbnails extends React.Component {
   //changed the main image when a thumbnail is clicked
   handleThumbnailClick (event, index) {
     event.preventDefault();
-    console.log('clicked', index);
     this.setState(
       {current_main_image: index}
     )
-    console.log(this.state.current_main_image)
   };
 
   render() {
+    let something;
     let thumbs = [];
     let product_data = this.props.product_data;
-    // product_data.map((product, i) => {
-    //   thumbs.push(
-    //     <Thumbnail href={`#main_image_${i}`}>
-    //       <Image
-    //         key={product.ID}
-    //         src={product.image_loc}></Image>
-    //     </Thumbnail>
-    //   )
-    // })
 
     //thumbnail only takes in 5 images
     if (product_data.length >= 4) {
       for (let i = 0; i <= 4; i++) {
         let productImg = product_data[i].image_loc;
         let numOfImage = `+${product_data.length-5} more`
-        //if 5th image exists, the image should have a dark overlay
+
+        //if 5th image exists, the image should have a dark overlay with an event listener
         if (i === 4) {
           thumbs.push(
             <Thumbnail
               onClick={(e) => this.props.overlayHandleClick(e)}
-
             >
               <Image
                 key={product_data[i].ID}
                 src={product_data[i].image_loc}
-
                 >
-                </Image>
-                <Overlay
-
-                >
-                  {numOfImage}</Overlay>
+              </Image>
+              <Overlay>
+                {numOfImage}
+              </Overlay>
             </Thumbnail>
           )
         } else {

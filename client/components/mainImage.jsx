@@ -9,7 +9,7 @@ class MainImage extends React.Component {
     }
   }
 
-  render () {
+  render() {
     let product_data = this.props.product_data;
     let mainImages = [];
 
@@ -26,11 +26,11 @@ class MainImage extends React.Component {
     })
 
     return (
-          <MainImageContainer
-            key={product_data.product_name + 'main'}
-          >
-            {mainImages}
-          </MainImageContainer>
+      <MainImageContainer
+        key={product_data.product_name + 'main'}
+      >
+        {mainImages}
+      </MainImageContainer>
     );
   }
 }

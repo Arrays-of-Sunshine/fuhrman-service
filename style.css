@@ -21,7 +21,7 @@ body {
   grid-row-end: 6;
   border: 5px;
   border-color: black;
-  background-color: olivedrab;
+  background-color: rgb(112, 243, 221);
   overflow:hidden;
 }
 
@@ -35,7 +35,8 @@ body {
   background-color: greenyellow;
   overflow: hidden;
   box-sizing: border-box;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(48, 47, 47, 0.2);
+  position: right;
 }
 
 .thumbnailContainer img {

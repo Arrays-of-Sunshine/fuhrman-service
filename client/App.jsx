@@ -18,7 +18,7 @@ class App extends React.Component {
   //`/products/${id}/product_images`
   componentDidMount() {
     let randomProduct = Math.floor(Math.random()*50)
-    axios.get(`/${randomProduct}`)
+    axios.get(`http://localhost:8002/products/${randomProduct}`)
     .then((res) => {
       let product_data = res.data;
       this.setState(

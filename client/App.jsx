@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import Thumbnails from './components/Thumbnails.jsx';
+import Header from './components/Header.jsx';
 import LargeProductDisplay from './components/LargeProductDisplay.jsx';
 
 class App extends React.Component {
@@ -49,29 +50,23 @@ class App extends React.Component {
   render() {
     return (
       <div>
-         {this.state.product_data.length > 0 &&
+        {this.state.product_data.length > 0 &&
           <LargeProductDisplay
-          display={this.state.overlay_display}
-          product_data={this.state.product_data}
-          overlayHandleClick={this.overlayHandleClick}
+            display={this.state.overlay_display}
+            product_data={this.state.product_data}
+            overlayHandleClick={this.overlayHandleClick}
           />
-         }
-        <h1>react is working now</h1>
-          {this.state.product_data.length > 0 &&
-            <div>
-              <h5>{this.state.product_data[0].category}</h5>
-              <h2>
-                <em>{this.state.product_data[0].product_name}</em>
-              </h2>
-              <p></p>
-              <h5><u>Shop all {this.state.product_data[0].company_name}</u></h5>
-              <p></p>
-              <Thumbnails
-                product_data={this.state.product_data}
-                overlayHandleClick={this.overlayHandleClick}
-              />
-            </div>
-          }
+        }
+        {this.state.product_data.length > 0 &&
+          <div>
+            <Header product_data={this.state.product_data}/>
+            <p></p>
+            <Thumbnails
+              product_data={this.state.product_data}
+              overlayHandleClick={this.overlayHandleClick}
+            />
+          </div>
+        }
         <div >
           {this.state.product_data.length === 0 &&
             <h1>no product info from DB</h1>
@@ -87,5 +82,5 @@ export default App;
 
 const Body = styled.div`
   color: black;
-  font-family: Helvetica, sans-serif;
+  font-family: Targetica, "Helvetica Neue", Helvetica, Arial, sans-serif
 `

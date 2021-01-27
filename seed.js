@@ -8,7 +8,7 @@ fakeDataMaker = () => {
   let productName = faker.commerce.productName();
   let description = faker.commerce.productDescription();
   let company_name = faker.company.companyName();
-  let category = `Target/Pets/Cat Stuff/${faker.commerce.department()}`;
+  let category = `Target / Pets / Cat Stuff / ${faker.commerce.department()}`;
   let image_num = 0;
 
   const seedingQuery = 'insert into product_images (product_id, product_name, media_type, image_desc, image_loc, company_name, category, image_num) values (?, ?, ?, ?, ?, ?, ?, ?)'
@@ -27,7 +27,7 @@ fakeDataMaker = () => {
   }
 
   for (let i = 1; i <= 300; i++) {
-    randomSize = Math.floor(Math.random()*(600-400)+400);
+    randomSize = Math.floor(Math.random()*(900-700)+700);
     let mockProduct =
       [
         product_id,

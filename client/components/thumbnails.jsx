@@ -100,19 +100,21 @@ class Thumbnails extends React.Component {
 export default Thumbnails;
 
 const Container = styled.div`
+  font-family: Targetica, "Helvetica Neue", Helvetica, Arial, sans-serif;
   width: 600px;
   height: 495px;
   overflow: hidden;
   display: flex;
   flex-direction: row;
   background: white;
+  margin-left: 12px;
   z-index: 1;
 `;
 
 const ThumbnailContainer = styled.aside`
   flex-direction: column;
   height: 475px;
-`
+`;
 
 const Thumbnail = styled.a`
   display: inline-flex;
@@ -132,7 +134,7 @@ const Overlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.7);
   color: white;
   text-align: center;
   line-height: 95px;

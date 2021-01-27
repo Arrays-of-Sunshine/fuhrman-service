@@ -4,73 +4,112 @@ import closeIcon from '../icons/close.svg';
 import leftArrow from '../icons/leftArrow.svg';
 import rightArrow from '../icons/rightArrow.svg';
 
-const LargeProductDisplay = (props) => {
+class LargeProductDisplay extends React.Component {
   //mapping product images for main image & thumbnails
-  const largeCarousel = [];
-  const carouselThumbnail = []
-  let products = props.product_data;
+  constructor (props) {
+    super(props);
+    this.state = {
+      currentImage: "",
+    }
 
-  products.map((product, i) => {
-    //large image
-    largeCarousel.push(
-      <Slider_div
-        id={`LargeImage-${i}`}
-      >
-        <LargeImage
-          src={product.image_loc}
+  }
+
+  componentDidMount () {
+    this.setState({currentImage: 0})
+
+  }
+
+  handleCarouselClick (event, imageNum) {
+    event.preventDefault();
+    console.log(imageNum);
+    this.setState({
+      currentImage: imageNum
+    })
+
+  }
+
+
+  render() {
+    const largeCarousel = [];
+    const carouselThumbnail = []
+
+    let products = this.props.product_data;
+
+    products.map((product, i) => {
+      //large image
+      largeCarousel.push(
+        <Slider_div
+          id={`LargeImage-${i}`}
+          key={`LargeImage-${i}`}
         >
-        </LargeImage>
-      </Slider_div>
-    )
-    //thumbnail
-    carouselThumbnail.push(
-      <Thumbnail
-        href={`#LargeImage-${i}`}>
-        <Image
-        src={product.image_loc}
-        ></Image>
-      </Thumbnail>
-    )
-  })
-
-  return (
-    <Overlay display={props.display}>
-      <OverlayContainer>
-        <LargeImageContainer>
-
-          <Image_Command_left>
-            <LeftBtn
-              src={leftArrow}
-            >
-            </LeftBtn>
-          </Image_Command_left>
-
-          <Image_Center_Slider>
-            {largeCarousel}
-          </Image_Center_Slider>
-
-          <Image_Command_right
-
+          <LargeImage
+            src={product.image_loc}
           >
-            <CloseIcon
-              onClick={(event) => {props.overlayHandleClick(event)}}
-              src={closeIcon}>
-            </CloseIcon>
-            <RightBtn
-              src={rightArrow}
+          </LargeImage>
+        </Slider_div>
+      )
+      //thumbnail
+      carouselThumbnail.push(
+        <Thumbnail
+          href={`#LargeImage-${i}`}
+          key={`LargeImage-${i}`}
+          >
+          <Image
+          // onClick={(event) => {this.handleCarouselClick(event, i)}}
+          src={product.image_loc}
+          ></Image>
+        </Thumbnail>
+      )
+    })
+
+    return (
+      <Overlay display={this.props.display}>
+        <OverlayContainer>
+          <LargeImageContainer>
+
+            <Image_Command_left>
+              <LeftBtn
+                src={leftArrow}
+              >
+              </LeftBtn>
+                <button
+                  href={`#LargeImage-${this.state.currentImage - 1}`}
+                >
+                </button>
+            </Image_Command_left>
+
+            <Image_Center_Slider>
+              {largeCarousel}
+            </Image_Center_Slider>
+
+            <Image_Command_right
+
             >
-            </RightBtn>
-          </Image_Command_right>
+              <CloseIcon
+                onClick={(event) => {this.props.overlayHandleClick(event)}}
+                src={closeIcon}>
+              </CloseIcon>
+              <RightBtn
+                src={rightArrow}
+                >
+              </RightBtn>
+                <button
+                  href={`#LargeImage-${this.state.currentImage + 1}`}
+                >
+                </button>
+            </Image_Command_right>
 
-        </LargeImageContainer>
+          </LargeImageContainer>
 
-        <ThumbnailContainer>
-          {carouselThumbnail}
-        </ThumbnailContainer>
+          <ThumbnailContainer>
+            {carouselThumbnail}
+          </ThumbnailContainer>
 
-      </OverlayContainer>
-    </Overlay>
-  )
+        </OverlayContainer>
+      </Overlay>
+    )
+  }
+
 }
 
 export default LargeProductDisplay;
@@ -118,6 +157,7 @@ const LargeImageContainer = styled.div`
   flex-shrink: 0;
 
 `
+
 const Image_Center_Slider = styled.div`
   height: 100%;
   width: 80%;
@@ -144,6 +184,10 @@ const Image_Command_right = styled.div`
   flex-direction: column;
   display: flex;
   flex-shrink: 0;
+`
+
+const button = styled.a`
+  background: green;
 `
 
 const Slider_div = styled.div`
@@ -185,13 +229,15 @@ const ThumbnailContainer = styled.div`
   width: 100%;
   justify-content: center;
   margin-top: 16px;
+  display: flex;
 `
 
 const Thumbnail = styled.a`
   display: inline-flex;
   position: relative;
-  background-color: greenyellow;
   box-sizing: border-box;
+  margin-left: 12px;
+
 `;
 
 const Image = styled.img`

@@ -50,7 +50,7 @@ const MainImageContainer = styled.section`
 
   height: 495px
   width: 485px;
-  `;
+`
 
 const MainImageSlide = styled.div`
   scroll-snap-align: start;
@@ -76,9 +76,11 @@ const MainImageSlide = styled.div`
 
 const Image = styled.img`
   position: relative;
+  background: white;
   display: inline-flex;
   height: 100%;
   width: 100%;
+  margin: 5px;
   padding: 5px;
   border: 1px dotted;
   box-sizing: border-box;

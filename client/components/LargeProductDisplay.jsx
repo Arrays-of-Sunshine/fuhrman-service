@@ -10,13 +10,19 @@ class LargeProductDisplay extends React.Component {
     super(props);
     this.state = {
       currentImage: "",
+      sliderImages: [],
     }
-
+  this.handleCarouselClick = this.handleCarouselClick.bind(this);
+  this.goToPrev = this.goToPrev.bind(this);
   }
 
   componentDidMount () {
+    let sliders = [];
     this.setState({currentImage: 0})
-
+    this.props.product_data.map((slide, i) => {
+      sliders.push(slide.image_loc);
+    })
+    this.setState({sliderImages: sliders});
   }
 
   handleCarouselClick (event, imageNum) {
@@ -25,8 +31,31 @@ class LargeProductDisplay extends React.Component {
     this.setState({
       currentImage: imageNum
     })
+  }
+
+  goToPrev (event) {
+    event.preventDefault();
+    let index = this.state.currentImage;
+    let sliderLength = this.state.sliderImages.length;
+
+    if (this.state.currentImage === 0) {
+      index = sliderLength;
+    } else {
+      index--;
+    }
+    this.setState({currentImage: index});
+  }
+
+  goToNext () {
+    event.preventDefault();
+  }
+
+  goToSlide() {
 
   }
+
+
+
 
 
   render() {
@@ -53,9 +82,9 @@ class LargeProductDisplay extends React.Component {
         <Thumbnail
           href={`#LargeImage-${i}`}
           key={`LargeImage-${i}`}
+            onClick={(event) => {this.handleCarouselClick(event, i)}}
           >
           <Image
-          // onClick={(event) => {this.handleCarouselClick(event, i)}}
           src={product.image_loc}
           ></Image>
         </Thumbnail>
@@ -70,16 +99,13 @@ class LargeProductDisplay extends React.Component {
             <Image_Command_left>
               <LeftBtn
                 src={leftArrow}
+                onClick={() => {this.goToPrev(event)}}
               >
               </LeftBtn>
-                <button
-                  href={`#LargeImage-${this.state.currentImage - 1}`}
-                >
-                </button>
             </Image_Command_left>
 
             <Image_Center_Slider>
-              {largeCarousel}
+              {largeCarousel[this.state.currentImage]}
             </Image_Center_Slider>
 
             <Image_Command_right
@@ -91,12 +117,9 @@ class LargeProductDisplay extends React.Component {
               </CloseIcon>
               <RightBtn
                 src={rightArrow}
+                onClick={() => {this.goToNext(event)}}
                 >
               </RightBtn>
-                <button
-                  href={`#LargeImage-${this.state.currentImage + 1}`}
-                >
-                </button>
             </Image_Command_right>
 
           </LargeImageContainer>

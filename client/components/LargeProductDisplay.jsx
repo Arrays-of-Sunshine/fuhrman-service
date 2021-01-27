@@ -39,7 +39,7 @@ class LargeProductDisplay extends React.Component {
     let sliderLength = this.state.sliderImages.length;
 
     if (this.state.currentImage === 0) {
-      index = sliderLength;
+      index = sliderLength-1;
     } else {
       index--;
     }
@@ -48,15 +48,16 @@ class LargeProductDisplay extends React.Component {
 
   goToNext () {
     event.preventDefault();
+    let index = this.state.currentImage;
+    let sliderLength = this.state.sliderImages.length;
+
+    if (this.state.currentImage === sliderLength-1) {
+      index = 0;
+    } else {
+      index++;
+    }
+    this.setState({currentImage: index});
   }
-
-  goToSlide() {
-
-  }
-
-
-
-
 
   render() {
     const largeCarousel = [];
@@ -178,7 +179,6 @@ const LargeImageContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-shrink: 0;
-
 `
 
 const Image_Center_Slider = styled.div`
@@ -189,6 +189,7 @@ const Image_Center_Slider = styled.div`
   display: flex;
   flex-direction: row;
   flex-shrink: 0;
+
 `
 const Image_Command_left = styled.div`
   height: 100%;
@@ -217,15 +218,13 @@ const Slider_div = styled.div`
   height: 100%;
   width: 100%;
   scroll-snap-align: start;
-  transform-origin: center center;
-  transform: scale(1) translate(0px,0px);
-  transition: transform 0.0s;
-  transition-timing-function: ease
+
   position: relative;
   flex-shrink: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+
 `
 
 const LargeImage = styled.img`
@@ -238,6 +237,12 @@ const LargeImage = styled.img`
   position: relative;
   display: inline-flex;
   overflow: hidden;
+
+  transform-origin: center center;
+  transform: scale(1) translate(0px, 0px);
+  transition: transform 0.0s;
+  transition-timing-function: ease;
+  animation: 4000ms ease 0s 1 normal forwards running
 `
 
 const LargeImageOverlay = styled.div`

@@ -109,9 +109,7 @@ class LargeProductDisplay extends React.Component {
               {largeCarousel[this.state.currentImage]}
             </Image_Center_Slider>
 
-            <Image_Command_right
-
-            >
+            <Image_Command_right>
               <CloseIcon
                 onClick={(event) => {this.props.overlayHandleClick(event)}}
                 src={closeIcon}>

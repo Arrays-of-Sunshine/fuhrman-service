@@ -1,7 +1,12 @@
-const db = require('./database/index-db.js').connection;
 const faker = require('faker');
+const mysql = require('mysql');
 
-// db.query('truncate table PRODUCT_IMAGES');
+const db = mysql.createConnection({
+  host: 'localhost',
+  user     : 'root',
+  password : '',
+  database : 'PRODUCT_IMAGES'
+})
 
 fakeDataMaker = () => {
   let product_id = 1;
@@ -60,9 +65,17 @@ fakeDataMaker = () => {
     .catch((err) => {
       console.log(err);
     })
-
 }
 
-fakeDataMaker();
+
+db.connect((err) => {
+  if(err) {
+    console.log('error connection mysql', err);
+  } else {
+    console.log('mysql connected!')
+    fakeDataMaker();
+  }
+})
+
 
 

@@ -10,13 +10,19 @@ class LargeProductDisplay extends React.Component {
     super(props);
     this.state = {
       currentImage: "",
+      sliderImages: [],
     }
-
+  this.handleCarouselClick = this.handleCarouselClick.bind(this);
+  this.goToPrev = this.goToPrev.bind(this);
   }
 
   componentDidMount () {
+    let sliders = [];
     this.setState({currentImage: 0})
-
+    this.props.product_data.map((slide, i) => {
+      sliders.push(slide.image_loc);
+    })
+    this.setState({sliderImages: sliders});
   }
 
   handleCarouselClick (event, imageNum) {
@@ -25,9 +31,33 @@ class LargeProductDisplay extends React.Component {
     this.setState({
       currentImage: imageNum
     })
-
   }
 
+  goToPrev (event) {
+    event.preventDefault();
+    let index = this.state.currentImage;
+    let sliderLength = this.state.sliderImages.length;
+
+    if (this.state.currentImage === 0) {
+      index = sliderLength-1;
+    } else {
+      index--;
+    }
+    this.setState({currentImage: index});
+  }
+
+  goToNext () {
+    event.preventDefault();
+    let index = this.state.currentImage;
+    let sliderLength = this.state.sliderImages.length;
+
+    if (this.state.currentImage === sliderLength-1) {
+      index = 0;
+    } else {
+      index++;
+    }
+    this.setState({currentImage: index});
+  }
 
   render() {
     const largeCarousel = [];
@@ -53,9 +83,9 @@ class LargeProductDisplay extends React.Component {
         <Thumbnail
           href={`#LargeImage-${i}`}
           key={`LargeImage-${i}`}
+            onClick={(event) => {this.handleCarouselClick(event, i)}}
           >
           <Image
-          // onClick={(event) => {this.handleCarouselClick(event, i)}}
           src={product.image_loc}
           ></Image>
         </Thumbnail>
@@ -70,16 +100,13 @@ class LargeProductDisplay extends React.Component {
             <Image_Command_left>
               <LeftBtn
                 src={leftArrow}
+                onClick={() => {this.goToPrev(event)}}
               >
               </LeftBtn>
-                <button
-                  href={`#LargeImage-${this.state.currentImage - 1}`}
-                >
-                </button>
             </Image_Command_left>
 
             <Image_Center_Slider>
-              {largeCarousel}
+              {largeCarousel[this.state.currentImage]}
             </Image_Center_Slider>
 
             <Image_Command_right
@@ -91,12 +118,9 @@ class LargeProductDisplay extends React.Component {
               </CloseIcon>
               <RightBtn
                 src={rightArrow}
+                onClick={() => {this.goToNext(event)}}
                 >
               </RightBtn>
-                <button
-                  href={`#LargeImage-${this.state.currentImage + 1}`}
-                >
-                </button>
             </Image_Command_right>
 
           </LargeImageContainer>
@@ -155,7 +179,6 @@ const LargeImageContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-shrink: 0;
-
 `
 
 const Image_Center_Slider = styled.div`
@@ -166,6 +189,7 @@ const Image_Center_Slider = styled.div`
   display: flex;
   flex-direction: row;
   flex-shrink: 0;
+
 `
 const Image_Command_left = styled.div`
   height: 100%;
@@ -194,15 +218,13 @@ const Slider_div = styled.div`
   height: 100%;
   width: 100%;
   scroll-snap-align: start;
-  transform-origin: center center;
-  transform: scale(1) translate(0px,0px);
-  transition: transform 0.0s;
-  transition-timing-function: ease
+
   position: relative;
   flex-shrink: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+
 `
 
 const LargeImage = styled.img`
@@ -215,6 +237,12 @@ const LargeImage = styled.img`
   position: relative;
   display: inline-flex;
   overflow: hidden;
+
+  transform-origin: center center;
+  transform: scale(1) translate(0px, 0px);
+  transition: transform 0.0s;
+  transition-timing-function: ease;
+  animation: 4000ms ease 0s 1 normal forwards running
 `
 
 const LargeImageOverlay = styled.div`

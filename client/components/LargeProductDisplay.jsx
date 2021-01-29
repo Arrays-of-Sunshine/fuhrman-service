@@ -113,15 +113,15 @@ class LargeProductDisplay extends React.Component {
               <RightBtn
                 src={rightArrow}
                 onClick={() => {this.goToNext(event)}}
-                >
+              >
               </RightBtn>
             </Image_Command_right>
 
           </LargeImageContainer>
 
-          <ThumbnailContainer>
-            {carouselThumbnail}
-          </ThumbnailContainer>
+            <ThumbnailContainer>
+              {carouselThumbnail}
+            </ThumbnailContainer>
 
         </OverlayContainer>
       </Overlay>

@@ -63,7 +63,8 @@ class Thumbnails extends React.Component {
             <Thumbnail href={`#main_image_${i}`}>
               <Image
                 key={product_data[i].ID}
-                src={product_data[i].image_loc}></Image>
+                src={product_data[i].image_loc}>
+              </Image>
             </Thumbnail>
           )
         }
@@ -76,7 +77,7 @@ class Thumbnails extends React.Component {
             <Image
               key={product_data[i].ID}
               src={product_data[i].image_loc}>
-              </Image>
+            </Image>
           </Thumbnail>
         )
       }

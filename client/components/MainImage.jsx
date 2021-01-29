@@ -21,15 +21,14 @@ class MainImage extends React.Component {
             key={product.product_name + product.ID}
             src={productImg}
             onClick={(e) => this.props.overlayHandleClick(e)}
-          ></Image>
+          >
+          </Image>
         </MainImageSlide>
       )
     })
 
     return (
-      <MainImageContainer
-        key={product_data.product_name + 'main'}
-      >
+      <MainImageContainer key={product_data.product_name + 'main'}>
         {mainImages}
       </MainImageContainer>
     );

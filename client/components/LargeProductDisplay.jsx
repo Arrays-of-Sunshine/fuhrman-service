@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 import closeIcon from '../icons/close.svg';
 import leftArrow from '../icons/leftArrow.svg';
 import rightArrow from '../icons/rightArrow.svg';
@@ -11,6 +11,7 @@ class LargeProductDisplay extends React.Component {
     this.state = {
       currentImage: "",
       sliderImages: [],
+
     }
   this.handleCarouselClick = this.handleCarouselClick.bind(this);
   this.goToPrev = this.goToPrev.bind(this);
@@ -72,10 +73,7 @@ class LargeProductDisplay extends React.Component {
           id={`LargeImage-${i}`}
           key={`LargeImage-${i}`}
         >
-          <LargeImage
-            src={product.image_loc}
-          >
-          </LargeImage>
+          <LargeImage src={product.image_loc}></LargeImage>
         </Slider_div>
       )
       //thumbnail
@@ -83,11 +81,9 @@ class LargeProductDisplay extends React.Component {
         <Thumbnail
           href={`#LargeImage-${i}`}
           key={`LargeImage-${i}`}
-            onClick={(event) => {this.handleCarouselClick(event, i)}}
+          onClick={(event) => {this.handleCarouselClick(event, i)}}
           >
-          <Image
-          src={product.image_loc}
-          ></Image>
+          <Image src={product.image_loc}></Image>
         </Thumbnail>
       )
     })
@@ -117,15 +113,15 @@ class LargeProductDisplay extends React.Component {
               <RightBtn
                 src={rightArrow}
                 onClick={() => {this.goToNext(event)}}
-                >
+              >
               </RightBtn>
             </Image_Command_right>
 
           </LargeImageContainer>
 
-          <ThumbnailContainer>
-            {carouselThumbnail}
-          </ThumbnailContainer>
+            <ThumbnailContainer>
+              {carouselThumbnail}
+            </ThumbnailContainer>
 
         </OverlayContainer>
       </Overlay>
@@ -147,6 +143,10 @@ const Overlay = styled.div`
   left: 0;
   background-color:rgba(255, 255, 255, 1);
 `
+const FadeInAnimation = keyframes`
+  from {opacity: 0}
+  to {opacity: 1}
+`
 
 const OverlayContainer = styled.div`
   width: 100%;
@@ -155,6 +155,7 @@ const OverlayContainer = styled.div`
   flex-direction: column;
   position: absolute;
   background-color: rgba(255, 255, 255, 0.9);
+  animation: ${FadeInAnimation} 1s ease;
 `
 const LargeImageContainer = styled.div`
   display: flex;
@@ -222,7 +223,6 @@ const Slider_div = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
 `
 
 const LargeImage = styled.img`
@@ -239,16 +239,9 @@ const LargeImage = styled.img`
   transform-origin: center center;
   transform: scale(1) translate(0px, 0px);
   transition: transform 0.0s;
-  transition-timing-function: ease;
-  animation: 4000ms ease 0s 1 normal forwards running
+  animation: ${FadeInAnimation} 0.3s ease;
 `
 
-const LargeImageOverlay = styled.div`
-  z-index: 3;
-  top: 0;
-  right: 0;
-  left: 0;
-`
 const ThumbnailContainer = styled.div`
   flex-direction: row;
   height: 100px;
@@ -299,11 +292,4 @@ const RightBtn = styled.img`
   top: 50%;
   bottom: 50%;
   right: 10px;
-`
-const OverlayCloseBtn = styled.button`
-  height: 500px;
-  width: 500px;
-  color: red;
-  position: absolute;
-  justify-content: center;
 `

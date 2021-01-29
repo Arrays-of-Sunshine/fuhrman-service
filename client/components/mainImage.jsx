@@ -20,6 +20,7 @@ class MainImage extends React.Component {
           <Image
             key={product.product_name + product.ID}
             src={productImg}
+            onClick={(e) => this.props.overlayHandleClick(e)}
           ></Image>
         </MainImageSlide>
       )

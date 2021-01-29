@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 import MainImage from './MainImage.jsx';
 
 class Thumbnails extends React.Component {
@@ -91,6 +91,7 @@ class Thumbnails extends React.Component {
           current_main_image={this.state.current_main_image}
           product_data={this.props.product_data}
           index={this.state.current_main_image}
+          overlayHandleClick={this.props.overlayHandleClick}
         />
       </Container>
     );
@@ -121,11 +122,27 @@ const Thumbnail = styled.a`
   position: relative;
   background-color: greenyellow;
   box-sizing: border-box;
+  margin: 5px;
 `;
+
+const BorderAnimation = keyframes`
+  0% {border: dotted 0px};
+  10% {border: dotted 1px};
+  50% {border: dotted 1px};
+  100% {border: solid 1px};
+`
 
 const Image = styled.img`
   height: 95px;
   width: 95px;
+  animation: ${BorderAnimation} 3s linear;
+`;
+
+const Selected = styled.img`
+  height: 95px;
+  width: 95px;
+  padding: 1px;
+
 `;
 
 const Overlay = styled.div`

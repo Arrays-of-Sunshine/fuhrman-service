@@ -5,9 +5,7 @@ const cors = require('cors');
 
 const PORT = 8002;
 
-app.use(cors({
-  origin: 'http://localhost:8000'
-}));
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded());

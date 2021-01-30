@@ -48,8 +48,8 @@ const MainImageContainer = styled.section`
   flex-wrap: nowrap;
   margin-left: 10px;
 
-  height: 495px
-  width: 485px;
+  height: 568px;
+  width: 568px;
 `
 
 const MainImageSlide = styled.div`
@@ -82,7 +82,6 @@ const Image = styled.img`
   width: 100%;
   margin: 5px;
   padding: 5px;
-  border: 1px dotted;
   box-sizing: border-box;
   object-fit: cover;
 `;

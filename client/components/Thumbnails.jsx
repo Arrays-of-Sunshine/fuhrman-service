@@ -103,8 +103,8 @@ export default Thumbnails;
 
 const Container = styled.div`
   font-family: Targetica, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  width: 600px;
-  height: 495px;
+  width: 695px;
+  height: 568px;
   overflow: hidden;
   display: flex;
   flex-direction: row;
@@ -115,7 +115,8 @@ const Container = styled.div`
 
 const ThumbnailContainer = styled.aside`
   flex-direction: column;
-  height: 475px;
+  height: 568px;
+  width: 115px;
 `;
 
 const Thumbnail = styled.a`
@@ -123,7 +124,7 @@ const Thumbnail = styled.a`
   position: relative;
   background-color: greenyellow;
   box-sizing: border-box;
-  margin: 5px;
+  margin: 3px 2px 2px 1px;
 `;
 
 const BorderAnimation = keyframes`
@@ -134,16 +135,15 @@ const BorderAnimation = keyframes`
 `
 
 const Image = styled.img`
-  height: 95px;
-  width: 95px;
-  animation: ${BorderAnimation} 3s linear;
+  height: 109px;
+  width: 109px;
 `;
 
 const Selected = styled.img`
-  height: 95px;
-  width: 95px;
+  height: 109px;
+  width: 109px;
   padding: 1px;
-
+  animation: ${BorderAnimation} 3s linear;
 `;
 
 const Overlay = styled.div`

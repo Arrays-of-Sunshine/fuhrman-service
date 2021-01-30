@@ -3,8 +3,8 @@ const mysql = require('mysql');
 const connection = mysql.createConnection({
   host: 'localhost',
   user     : 'root',
-  password : 'hrr50-FEC',
-  database : 'PRODUCT_IMAGES'
+  password : '',
+  database : 'product_images'
 })
 
 connection.connect((err) => {
@@ -16,7 +16,7 @@ connection.connect((err) => {
 })
 
 connection.getProductInfo = (product_id, callback) => {
-  let queryString = `SELECT * FROM PRODUCT_IMAGES WHERE PRODUCT_ID = ${product_id}`;
+  let queryString = `SELECT * FROM product_images WHERE product_id = ${product_id}`;
   connection.query(queryString, (err, queryData) => {
     if(err) {
       callback(err);

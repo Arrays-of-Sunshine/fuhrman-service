@@ -4,8 +4,8 @@ const mysql = require('mysql');
 const db = mysql.createConnection({
   host: 'localhost',
   user     : 'root',
-  password : 'hrr50-FEC',
-  database : 'PRODUCT_IMAGES'
+  password : '',
+  database : 'product_images'
 })
 
 fakeDataMaker = () => {

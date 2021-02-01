@@ -18,11 +18,10 @@ class App extends React.Component {
 
   //`/products/${id}/product_images`
   componentDidMount() {
-    let randomProduct = Math.floor(Math.random()*50)
+    let randomProduct = Math.floor(Math.random()*(50-1)+1)
     axios.get(`http://localhost:8002/products/${randomProduct}`)
     .then((res) => {
       let product_data = res.data;
-      console.log(product_data);
       this.setState(
         {
           product_data: product_data,
@@ -37,15 +36,12 @@ class App extends React.Component {
 
   overlayHandleClick(event, index) {
     event.preventDefault();
-    console.log('onclick', event.target.value, index)
-
     if (this.state.overlay_display === 'none') {
       this.setState({
         overlay_display: 'block',
         main_image_index: event.target.name,
       })
     //this "else" handles closing the overlay
-      console.log(this.state)
     } else {
       this.setState({
         overlay_display: 'none'
@@ -55,7 +51,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <Themed>
         {this.state.product_data.length > 0 &&
           <LargeProductDisplay
             display={this.state.overlay_display}
@@ -80,14 +76,14 @@ class App extends React.Component {
             <h1>no product info from DB</h1>
           }
         </div>
-      </div>
+      </Themed>
     );
   }
 }
 
 export default App;
 
-const Body = styled.div`
+const Themed = styled.div`
   color: black;
   font-family: Targetica, "Helvetica Neue", Helvetica, Arial, sans-serif
 `

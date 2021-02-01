@@ -8,18 +8,12 @@ const MainImage = (props) => {
   let product_data = props.product_data;
   let main_image_index = props.main_image_index;
 
-  debugger;
-
   product_data.map((product, index) => {
     let productImg = product.image_loc;
     mainImages.push(
       <MainImageSlide
         id={`main_image_${index}`}
-        onClick={
-          (e) => {props.overlayHandleClick(e, index);
-          console.log(index);
-          }
-        }
+        onClick={(e) => {props.overlayHandleClick(e, index)}}
         >
         <Image
           name={index}
@@ -34,14 +28,13 @@ const MainImage = (props) => {
   return (
     <MainImageContainer
       key={product_data.product_name + 'main'}
-      backgroundImage={this.props.mainImages}
     >
       {mainImages}
     </MainImageContainer>
   );
 
 }
-
+//       backgroundImage={props.mainImages}
 export default MainImage
 
 const MainImageContainer = styled.section`

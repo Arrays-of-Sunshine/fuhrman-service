@@ -23,6 +23,7 @@ const Thumbnails = (props) => {
             <Image
               key={product_data[i].ID}
               src={product_data[i].image_loc}
+              selected={i === props.main_image_index}
             >
             </Image>
             <Overlay>
@@ -31,11 +32,14 @@ const Thumbnails = (props) => {
           </Thumbnail>
         )
       } else {
+        // debugger;
         thumbs.push(
           <Thumbnail href={`#main_image_${i}`}>
             <Image
               key={product_data[i].ID}
-              src={product_data[i].image_loc}>
+              src={product_data[i].image_loc}
+              selected={i === props.main_image_index}
+            >
             </Image>
           </Thumbnail>
         )
@@ -48,11 +52,14 @@ const Thumbnails = (props) => {
         <Thumbnail href={`#main_image_${i}`}>
           <Image
             key={product_data[i].ID}
-            src={product_data[i].image_loc}>
+            src={product_data[i].image_loc}
+            selected={i === props.main_image_index}
+          >
           </Image>
         </Thumbnail>
       )
     }
+  }
 
     return (
       <Container>
@@ -67,7 +74,6 @@ const Thumbnails = (props) => {
         />
       </Container>
     );
-  }
 }
 
 export default Thumbnails;
@@ -108,6 +114,10 @@ const BorderAnimation = keyframes`
 const Image = styled.img`
   height: 109px;
   width: 109px;
+  border: ${({selected}) => {
+    selected === "true" && `5px` ||
+    selected === "false" && `10px`
+  }};
 `;
 
 const Selected = styled.img`

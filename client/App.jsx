@@ -14,6 +14,7 @@ class App extends React.Component {
       overlay_display: 'none'
     }
     this.overlayHandleClick = this.overlayHandleClick.bind(this);
+    this.overlaySetState=this.overlaySetState.bind(this);
   }
 
   //`/products/${id}/product_images`
@@ -34,12 +35,16 @@ class App extends React.Component {
     })
   }
 
+  overlaySetState(index) {
+    this.setState({main_image_index: index})
+  }
+
   overlayHandleClick(event, index) {
     event.preventDefault();
     if (this.state.overlay_display === 'none') {
       this.setState({
+        main_image_index: index,
         overlay_display: 'block',
-        main_image_index: event.target.name,
       })
     //this "else" handles closing the overlay
     } else {
@@ -58,6 +63,7 @@ class App extends React.Component {
             product_data={this.state.product_data}
             overlayHandleClick={this.overlayHandleClick}
             main_image_index={this.state.main_image_index}
+            overlaySetState={this.overlaySetState}
           />
         }
         {this.state.product_data.length > 0 &&

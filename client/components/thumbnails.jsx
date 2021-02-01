@@ -70,6 +70,10 @@ const Thumbnails = (props) => {
     );
 }
 
+const ZoomImage = (props) => {
+
+}
+
 export default Thumbnails;
 
 const Container = styled.div`

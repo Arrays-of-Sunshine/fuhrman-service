@@ -11,7 +11,6 @@ class LargeProductDisplay extends React.Component {
     this.state = {
       currentImage: "",
       sliderImages: [],
-
     }
   this.handleCarouselClick = this.handleCarouselClick.bind(this);
   this.goToPrev = this.goToPrev.bind(this);
@@ -19,7 +18,7 @@ class LargeProductDisplay extends React.Component {
 
   componentDidMount () {
     let sliders = [];
-    this.setState({currentImage: 0})
+    this.setState({currentImage: this.props.main_image_index})
     this.props.product_data.map((slide, i) => {
       sliders.push(slide.image_loc);
     })

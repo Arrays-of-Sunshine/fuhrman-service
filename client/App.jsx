@@ -9,8 +9,8 @@ class App extends React.Component {
   constructor () {
     super();
     this.state = {
-      view: "view",
       product_data: [],
+      main_image_index: 0,
       overlay_display: 'none'
     }
     this.overlayHandleClick = this.overlayHandleClick.bind(this);
@@ -22,10 +22,11 @@ class App extends React.Component {
     axios.get(`http://localhost:8002/products/${randomProduct}`)
     .then((res) => {
       let product_data = res.data;
+      console.log(product_data);
       this.setState(
         {
-          view: 'product',
           product_data: product_data,
+          main_image_index: 0,
         }
       );
     })
@@ -34,12 +35,17 @@ class App extends React.Component {
     })
   }
 
-  overlayHandleClick(e) {
-    e.preventDefault();
+  overlayHandleClick(event, index) {
+    event.preventDefault();
+    console.log('onclick', event.target.value, index)
+
     if (this.state.overlay_display === 'none') {
       this.setState({
-        overlay_display: 'block'
+        overlay_display: 'block',
+        main_image_index: event.target.name,
       })
+    //this "else" handles closing the overlay
+      console.log(this.state)
     } else {
       this.setState({
         overlay_display: 'none'
@@ -55,6 +61,7 @@ class App extends React.Component {
             display={this.state.overlay_display}
             product_data={this.state.product_data}
             overlayHandleClick={this.overlayHandleClick}
+            main_image_index={this.state.main_image_index}
           />
         }
         {this.state.product_data.length > 0 &&
@@ -64,6 +71,7 @@ class App extends React.Component {
             <Thumbnails
               product_data={this.state.product_data}
               overlayHandleClick={this.overlayHandleClick}
+              main_image_index={this.state.main_image_index}
             />
           </div>
         }
@@ -76,7 +84,6 @@ class App extends React.Component {
     );
   }
 }
-
 
 export default App;
 

@@ -22,9 +22,7 @@ const Thumbnails = (props) => {
           >
             <Image
               key={product_data[i].ID}
-              src={product_data[i].image_loc}
-              selected={i === props.main_image_index}
-            >
+              src={product_data[i].image_loc}>
             </Image>
             <Overlay>
               {numOfImage}
@@ -37,9 +35,7 @@ const Thumbnails = (props) => {
           <Thumbnail href={`#main_image_${i}`}>
             <Image
               key={product_data[i].ID}
-              src={product_data[i].image_loc}
-              selected={i === props.main_image_index}
-            >
+              src={product_data[i].image_loc}>
             </Image>
           </Thumbnail>
         )
@@ -52,9 +48,7 @@ const Thumbnails = (props) => {
         <Thumbnail href={`#main_image_${i}`}>
           <Image
             key={product_data[i].ID}
-            src={product_data[i].image_loc}
-            selected={i === props.main_image_index}
-          >
+            src={product_data[i].image_loc}>
           </Image>
         </Thumbnail>
       )
@@ -79,7 +73,6 @@ const Thumbnails = (props) => {
 export default Thumbnails;
 
 const Container = styled.div`
-  font-family: Targetica, "Helvetica Neue", Helvetica, Arial, sans-serif;
   width: 695px;
   height: 568px;
   overflow: hidden;
@@ -99,7 +92,6 @@ const ThumbnailContainer = styled.aside`
 const Thumbnail = styled.a`
   display: inline-flex;
   position: relative;
-  background-color: greenyellow;
   box-sizing: border-box;
   margin: 3px 2px 2px 1px;
 `;
@@ -114,17 +106,6 @@ const BorderAnimation = keyframes`
 const Image = styled.img`
   height: 109px;
   width: 109px;
-  border: ${({selected}) => {
-    selected === "true" && `5px` ||
-    selected === "false" && `10px`
-  }};
-`;
-
-const Selected = styled.img`
-  height: 109px;
-  width: 109px;
-  padding: 1px;
-  animation: ${BorderAnimation} 3s linear;
 `;
 
 const Overlay = styled.div`

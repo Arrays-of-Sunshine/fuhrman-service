@@ -3,18 +3,15 @@ import styled, {keyframes} from 'styled-components';
 import MainImage from './MainImage.jsx';
 
 const Thumbnails = (props) => {
-  //changed the main image when a thumbnail is clicked
 
   let thumbs = [];
   let product_data = props.product_data;
   let main_image_index = props.main_image_index;
 
-  //thumbnail only takes in 5 images
   if (product_data.length >= 4) {
     for (let i = 0; i <= 4; i++) {
       let productImg = product_data[i].image_loc;
       let numOfImage = `+${product_data.length - 5} more`
-      //if 5th image exists, the image should have a dark overlay with an event listener
       if (i === 4) {
         thumbs.push(
           <Thumbnail
@@ -30,7 +27,6 @@ const Thumbnails = (props) => {
           </Thumbnail>
         )
       } else {
-        // debugger;
         thumbs.push(
           <Thumbnail href={`#main_image_${i}`}>
             <Image

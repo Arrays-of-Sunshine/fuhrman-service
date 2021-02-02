@@ -5,7 +5,6 @@ import leftArrow from '../icons/leftArrow.svg';
 import rightArrow from '../icons/rightArrow.svg';
 
 class LargeProductDisplay extends React.Component {
-  //mapping product images for main image & thumbnails
   constructor (props) {
     super(props);
     this.state = {
@@ -25,7 +24,6 @@ class LargeProductDisplay extends React.Component {
 
   handleCarouselClick (event, imageNum) {
     event.preventDefault();
-    console.log(imageNum);
     overlaySetState
     this.props.overlaySetState(imageNum);
   }
@@ -40,10 +38,10 @@ class LargeProductDisplay extends React.Component {
     } else {
       index--;
     }
-    this.props.overlaySetState(imageNum);
+    this.props.overlaySetState(index);
   }
 
-  goToNext () {
+  goToNext (event) {
     event.preventDefault();
     let index = this.props.main_image_index;
     let sliderLength = this.state.sliderImages.length;
@@ -53,7 +51,7 @@ class LargeProductDisplay extends React.Component {
     } else {
       index++;
     }
-    this.props.overlaySetState(imageNum);
+    this.props.overlaySetState(index);
   }
 
   render() {
@@ -63,7 +61,6 @@ class LargeProductDisplay extends React.Component {
     let products = this.props.product_data;
 
     products.map((product, i) => {
-      //large image
       largeCarousel.push(
         <Slider_div
           id={`LargeImage-${i}`}
@@ -72,7 +69,6 @@ class LargeProductDisplay extends React.Component {
           <LargeImage src={product.image_loc}></LargeImage>
         </Slider_div>
       )
-      //thumbnail
       carouselThumbnail.push(
         <Thumbnail
           href={`#LargeImage-${i}`}
@@ -139,6 +135,7 @@ const Overlay = styled.div`
   left: 0;
   background-color:rgba(255, 255, 255, 1);
 `
+
 const FadeInAnimation = keyframes`
   from {opacity: 0}
   to {opacity: 1}
@@ -184,8 +181,8 @@ const Image_Center_Slider = styled.div`
   display: flex;
   flex-direction: row;
   flex-shrink: 0;
-
 `
+
 const Image_Command_left = styled.div`
   height: 100%;
   width: 10%;
@@ -252,7 +249,6 @@ const Thumbnail = styled.a`
   position: relative;
   box-sizing: border-box;
   margin-left: 12px;
-
 `;
 
 const Image = styled.img`

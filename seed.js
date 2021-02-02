@@ -4,7 +4,7 @@ const mysql = require('mysql');
 const db = mysql.createConnection({
   host: 'localhost',
   user     : 'root',
-  password : '',
+  password : 'hrr50-FEC',
   database : 'product_images'
 })
 
@@ -45,7 +45,6 @@ fakeDataMaker = () => {
         image_num,
       ];
 
-    //6 images per product (& 6 images share the same product name)
     if (i % 6 === 0) {
       product_id++;
       productName = faker.commerce.productName()

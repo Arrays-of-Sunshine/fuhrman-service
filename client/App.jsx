@@ -9,23 +9,24 @@ class App extends React.Component {
   constructor () {
     super();
     this.state = {
-      view: "view",
       product_data: [],
+      main_image_index: 0,
       overlay_display: 'none'
     }
     this.overlayHandleClick = this.overlayHandleClick.bind(this);
+    this.overlaySetState=this.overlaySetState.bind(this);
   }
 
   //`/products/${id}/product_images`
   componentDidMount() {
-    let randomProduct = Math.floor(Math.random()*50)
+    let randomProduct = Math.floor(Math.random()*(50-1)+1)
     axios.get(`http://localhost:8002/products/${randomProduct}`)
     .then((res) => {
       let product_data = res.data;
       this.setState(
         {
-          view: 'product',
           product_data: product_data,
+          main_image_index: 0,
         }
       );
     })
@@ -34,12 +35,18 @@ class App extends React.Component {
     })
   }
 
-  overlayHandleClick(e) {
-    e.preventDefault();
+  overlaySetState(index) {
+    this.setState({main_image_index: index})
+  }
+
+  overlayHandleClick(event, index) {
+    event.preventDefault();
     if (this.state.overlay_display === 'none') {
       this.setState({
-        overlay_display: 'block'
+        main_image_index: index,
+        overlay_display: 'block',
       })
+    //this "else" handles closing the overlay
     } else {
       this.setState({
         overlay_display: 'none'
@@ -49,12 +56,14 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <Themed>
         {this.state.product_data.length > 0 &&
           <LargeProductDisplay
             display={this.state.overlay_display}
             product_data={this.state.product_data}
             overlayHandleClick={this.overlayHandleClick}
+            main_image_index={this.state.main_image_index}
+            overlaySetState={this.overlaySetState}
           />
         }
         {this.state.product_data.length > 0 &&
@@ -64,6 +73,7 @@ class App extends React.Component {
             <Thumbnails
               product_data={this.state.product_data}
               overlayHandleClick={this.overlayHandleClick}
+              main_image_index={this.state.main_image_index}
             />
           </div>
         }
@@ -72,15 +82,14 @@ class App extends React.Component {
             <h1>no product info from DB</h1>
           }
         </div>
-      </div>
+      </Themed>
     );
   }
 }
 
-
 export default App;
 
-const Body = styled.div`
+const Themed = styled.div`
   color: black;
   font-family: Targetica, "Helvetica Neue", Helvetica, Arial, sans-serif
 `

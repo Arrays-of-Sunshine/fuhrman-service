@@ -2,76 +2,35 @@ import React from 'react';
 import styled, {keyframes} from 'styled-components';
 import MainImage from './MainImage.jsx';
 
-class Thumbnails extends React.Component {
-  constructor (props) {
-    super(props);
-    this.state = {
-      current_main_image: 0,
-      activeThumbnail: [false, false, false, false, false],
-    }
-    this.handleThumbnailClick = this.handleThumbnailClick.bind(this);
-  }
-
-  //to avoid error when the page is loading.
-  componentDidMount() {
-    if (this.state.current_main_image === '') {
-      this.setState(
-        {
-          current_main_image: this.props.product_data[0].image_loc
-        }
-      );
-    }
-  }
-
+const Thumbnails = (props) => {
   //changed the main image when a thumbnail is clicked
-  handleThumbnailClick (event, index) {
-    event.preventDefault();
-    this.setState(
-      {current_main_image: index}
-    )
-  };
 
-  render() {
-    let something;
-    let thumbs = [];
-    let product_data = this.props.product_data;
+  let thumbs = [];
+  let product_data = props.product_data;
+  let main_image_index = props.main_image_index;
 
-    //thumbnail only takes in 5 images
-    if (product_data.length >= 4) {
-      for (let i = 0; i <= 4; i++) {
-        let productImg = product_data[i].image_loc;
-        let numOfImage = `+${product_data.length-5} more`
-
-        //if 5th image exists, the image should have a dark overlay with an event listener
-        if (i === 4) {
-          thumbs.push(
-            <Thumbnail
-              onClick={(e) => this.props.overlayHandleClick(e)}
-            >
-              <Image
-                key={product_data[i].ID}
-                src={product_data[i].image_loc}
-                >
-              </Image>
-              <Overlay>
-                {numOfImage}
-              </Overlay>
-            </Thumbnail>
-          )
-        } else {
-          thumbs.push(
-            <Thumbnail href={`#main_image_${i}`}>
-              <Image
-                key={product_data[i].ID}
-                src={product_data[i].image_loc}>
-              </Image>
-            </Thumbnail>
-          )
-        }
-      }
-    } else {
-      for (let i = 0; i < product_data[i].length; i++) {
-        let productImg = product_data[i].image_loc;
+  //thumbnail only takes in 5 images
+  if (product_data.length >= 4) {
+    for (let i = 0; i <= 4; i++) {
+      let productImg = product_data[i].image_loc;
+      let numOfImage = `+${product_data.length - 5} more`
+      //if 5th image exists, the image should have a dark overlay with an event listener
+      if (i === 4) {
+        thumbs.push(
+          <Thumbnail
+            onClick={(e) => props.overlayHandleClick(e, i)}
+          >
+            <Image
+              key={product_data[i].ID}
+              src={product_data[i].image_loc}>
+            </Image>
+            <Overlay>
+              {numOfImage}
+            </Overlay>
+          </Thumbnail>
+        )
+      } else {
+        // debugger;
         thumbs.push(
           <Thumbnail href={`#main_image_${i}`}>
             <Image
@@ -82,6 +41,19 @@ class Thumbnails extends React.Component {
         )
       }
     }
+  } else {
+    for (let i = 0; i < product_data[i].length; i++) {
+      let productImg = product_data[i].image_loc;
+      thumbs.push(
+        <Thumbnail href={`#main_image_${i}`}>
+          <Image
+            key={product_data[i].ID}
+            src={product_data[i].image_loc}>
+          </Image>
+        </Thumbnail>
+      )
+    }
+  }
 
     return (
       <Container>
@@ -89,20 +61,22 @@ class Thumbnails extends React.Component {
           {thumbs}
         </ThumbnailContainer>
         <MainImage
-          current_main_image={this.state.current_main_image}
-          product_data={this.props.product_data}
-          index={this.state.current_main_image}
-          overlayHandleClick={this.props.overlayHandleClick}
+          main_image_index={main_image_index}
+          product_data={props.product_data}
+          index={main_image_index}
+          overlayHandleClick={props.overlayHandleClick}
         />
       </Container>
     );
-  }
+}
+
+const ZoomImage = (props) => {
+
 }
 
 export default Thumbnails;
 
 const Container = styled.div`
-  font-family: Targetica, "Helvetica Neue", Helvetica, Arial, sans-serif;
   width: 695px;
   height: 568px;
   overflow: hidden;
@@ -122,7 +96,6 @@ const ThumbnailContainer = styled.aside`
 const Thumbnail = styled.a`
   display: inline-flex;
   position: relative;
-  background-color: greenyellow;
   box-sizing: border-box;
   margin: 3px 2px 2px 1px;
 `;
@@ -137,13 +110,6 @@ const BorderAnimation = keyframes`
 const Image = styled.img`
   height: 109px;
   width: 109px;
-`;
-
-const Selected = styled.img`
-  height: 109px;
-  width: 109px;
-  padding: 1px;
-  animation: ${BorderAnimation} 3s linear;
 `;
 
 const Overlay = styled.div`

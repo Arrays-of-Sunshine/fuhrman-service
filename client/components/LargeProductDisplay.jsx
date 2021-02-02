@@ -9,9 +9,7 @@ class LargeProductDisplay extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      currentImage: "",
       sliderImages: [],
-
     }
   this.handleCarouselClick = this.handleCarouselClick.bind(this);
   this.goToPrev = this.goToPrev.bind(this);
@@ -19,7 +17,6 @@ class LargeProductDisplay extends React.Component {
 
   componentDidMount () {
     let sliders = [];
-    this.setState({currentImage: 0})
     this.props.product_data.map((slide, i) => {
       sliders.push(slide.image_loc);
     })
@@ -29,35 +26,34 @@ class LargeProductDisplay extends React.Component {
   handleCarouselClick (event, imageNum) {
     event.preventDefault();
     console.log(imageNum);
-    this.setState({
-      currentImage: imageNum
-    })
+    overlaySetState
+    this.props.overlaySetState(imageNum);
   }
 
   goToPrev (event) {
     event.preventDefault();
-    let index = this.state.currentImage;
+    let index = this.props.main_image_index;
     let sliderLength = this.state.sliderImages.length;
 
-    if (this.state.currentImage === 0) {
+    if (this.props.main_image_index === 0) {
       index = sliderLength-1;
     } else {
       index--;
     }
-    this.setState({currentImage: index});
+    this.props.overlaySetState(imageNum);
   }
 
   goToNext () {
     event.preventDefault();
-    let index = this.state.currentImage;
+    let index = this.props.main_image_index;
     let sliderLength = this.state.sliderImages.length;
 
-    if (this.state.currentImage === sliderLength-1) {
+    if (this.props.main_image_index === sliderLength-1) {
       index = 0;
     } else {
       index++;
     }
-    this.setState({currentImage: index});
+    this.props.overlaySetState(imageNum);
   }
 
   render() {
@@ -102,7 +98,7 @@ class LargeProductDisplay extends React.Component {
             </Image_Command_left>
 
             <Image_Center_Slider>
-              {largeCarousel[this.state.currentImage]}
+              {largeCarousel[this.props.main_image_index]}
             </Image_Center_Slider>
 
             <Image_Command_right>

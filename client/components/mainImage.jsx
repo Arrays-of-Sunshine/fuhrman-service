@@ -1,40 +1,40 @@
 import React from 'react';
 import styled from 'styled-components';
 
-class MainImage extends React.Component {
+const MainImage = (props) => {
   //for future adjustments, I am making this a class
-  constructor (props) {
-    super(props);
-    this.state = {
-    }
-  }
 
-  render() {
-    let product_data = this.props.product_data;
-    let mainImages = [];
+  let mainImages = [];
+  let product_data = props.product_data;
+  let main_image_index = props.main_image_index;
 
-    product_data.map((product, i) => {
-      let productImg = product.image_loc;
-      mainImages.push(
-        <MainImageSlide id={`main_image_${i}`}>
-          <Image
-            key={product.product_name + product.ID}
-            src={productImg}
-            onClick={(e) => this.props.overlayHandleClick(e)}
-          >
-          </Image>
-        </MainImageSlide>
-      )
-    })
+  product_data.map((product, index) => {
+    let productImg = product.image_loc;
+    mainImages.push(
+      <MainImageSlide
+        id={`main_image_${index}`}
+        onClick={(e) => {props.overlayHandleClick(e, index)}}
+        >
+        <Image
+          name={index}
+          key={product.product_name + product.ID}
+          src={productImg}
+        >
+        </Image>
+      </MainImageSlide>
+    )
+  })
 
-    return (
-      <MainImageContainer key={product_data.product_name + 'main'}>
-        {mainImages}
-      </MainImageContainer>
-    );
-  }
+  return (
+    <MainImageContainer
+      key={product_data.product_name + 'main'}
+    >
+      {mainImages}
+    </MainImageContainer>
+  );
+
 }
-
+//       backgroundImage={props.mainImages}
 export default MainImage
 
 const MainImageContainer = styled.section`
@@ -50,6 +50,8 @@ const MainImageContainer = styled.section`
 
   height: 568px;
   width: 568px;
+
+
 `
 
 const MainImageSlide = styled.div`

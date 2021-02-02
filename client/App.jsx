@@ -17,10 +17,9 @@ class App extends React.Component {
     this.overlaySetState=this.overlaySetState.bind(this);
   }
 
-  //`/products/${id}/product_images`
   componentDidMount() {
     let randomProduct = Math.floor(Math.random()*(50-1)+1)
-    axios.get(`http://localhost:8002/products/${randomProduct}`)
+    axios.get(`http://54.153.66.255:8002/products/${randomProduct}`)
     .then((res) => {
       let product_data = res.data;
       this.setState(
@@ -46,7 +45,6 @@ class App extends React.Component {
         main_image_index: index,
         overlay_display: 'block',
       })
-    //this "else" handles closing the overlay
     } else {
       this.setState({
         overlay_display: 'none'

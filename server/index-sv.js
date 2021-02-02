@@ -14,7 +14,6 @@ app.use('/bundle', express.static('public/bundle.js'));
 
 app.get('/products/:id', (req, res) => {
   let id = req.params.id;
-  console.log(id);
   db.getProductInfo(id, (result) => {
     res.send(result);
   }, () => {

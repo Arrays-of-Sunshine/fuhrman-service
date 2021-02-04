@@ -9,7 +9,7 @@ const randomWordList = () => {
   const productDescriptionWordsArr = productDescriptionWords.split(' ');
   const newWordsArr = [];
   for (let j = 0; j < 10; j += 1) {
-    newWordsArr.push(faker.random.arrayElement(productDescriptionWords).toLowerCase());
+    newWordsArr.push(faker.random.arrayElement(productDescriptionWordsArr).toLowerCase());
   }
   const newWordsList = newWordsArr.join(' ');
   return newWordsList;
@@ -21,14 +21,12 @@ const companyName = [
 const category = [
 'Earthtone Solutions', 'Easy Kitty', 'EasyCare', 'Easypet', 'EasySpot', 'Eco Cane', 'EcoBath', 'EcoBio-Block', 'EcoKind', 'EcoKitty', 'EcoLogic', 'EcoPetBox', 'EcoPlus', 'ECOS for Pets!', 'EcoSMART', 'eCOTRITION', 'Ecovet', 'Eddie Bauer', 'Educator', 'Eheim', 'EicosaDerm', 'Einstein Pets', 'Elanco', 'Elegant Comfort', 'Elite', 'EliteField', 'eLuxury', 'Embark', 'Emerald Pet', 'Enalapril', 'Enalapril Maleate Compounded', 'Enchanted Home Pet', 'Encore', 'Endosorb', 'Endura Flap', 'Endurosyn', 'Enjoy It', 'Enjoy Yums', 'Enrofloxacin', 'Enrofloxacin Compounded', 'EnteDerm', 'Entryways', 'Entyce', 'Envirogroom', 'Epi-Pet', 'Episanis', 'Epizyme', 'Equa Holistics', 'Equi-bute', 'Equidone', 'Equilite Herbals', 'Equine Advantage', 'Equine Edibles', 'Equine Healthcare International', 'Equine Matrix', 'Equinutrix', 'Equistro', 'Equithrive', 'Equus Magnificus', 'EQyss Grooming Products', 'Espree', 'Essence', 'Ester Scholten', 'Estradiol', 'Ethical Pet', 'Ethique', 'Etna', 'Etodolac', 'Etta Says!', 'Eufy', 'Eukanuba', 'Euro-Dog', 'Ever Clean', 'Evercare Pet Plus', 'Every Day Naturals', 'Everyday Essentials', 'Evolution', 'Evolve', 'Exaco', 'Exclusively Dog', 'Exel', 'Exo Terra', 'Exotic Nutrition', 'Exotic Pebbles', 'Extend', 'Eye Envy', 'Eyenimal', 'EZ', 'EZ Change', 'EZ Groom', 'eZall', 'EZWash Wand', 'EzyDog', 'Fab Dog', 'Famciclovir', 'Famotidine', 'Famotidine Compounded', 'Fan Creations', 'Fancy Feast', 'Fantastic Dog Chews', 'Farm Fresh Pet Foods', 'Farm Innovators', 'Farmina', 'Farmland Traditions', 'Farnam', 'Fast Pet Food', 'Fat Cat', 'FEANDREA', 'FeatherSmart', 'Febreze', 'Felimazole', 'Feline Natural', 'Feline Pine', 'Feline Ruff', 'Felisept', 'Feliway', 'Fera Pet Organics', 'Ferplast', 'Ferrera Farms', 'Fetch For Pets', 'Fetch Pet Products', 'Fetch! Dog Treats', 'Fetch-It Pets', 'Fi', 'FiberCore', 'Fido Pet Products', 'Fieldworks', 'Filtrete', 'Findster', 'Finest For Pets', 'Finish Line', 'FinNero', 'First Companion', 'First Saturday Lime', 'FirstMate', 'Firstrax', 'Fish Aid Antibiotics', 'Fish Mate', 'Fish4Dogs', 'FitBark', 'FitPAWS', 'Fizzion', 'Flair', 'FLAVORS', 'Flea Away', 'Fleabusters', 'Fleck', 'Flexi', 'Flexpet', 'Flexprofen', 'Flexrake', 'FlexTran Animal Care', 'Flock Fest', 'Fluconazole', 'Fludrocortisone', 'Fluoxetine', 'Fluoxetine HCl Compounded', 'Flush Puppies', 'Fluval', 'FLYGRUBS', 'Flying Pig Grooming', 'Flys-Off', 'Focus by Source Inc.', 'Fooey', 'FORCE', 'Forco', 'forePets', 'Formula 707', 'Formula of Champions', 'Forticept', 'Fortiflora', 'Forza10', 'fouFIT', 'Found My Animal', 'Four Paws', 'Free Form', 'Free Range Organics', 'Free Spirit', 'Freedom Health', 'Freely', 'FreezeTag', 'Fresh Eggs Daily', 'Fresh Kitty', 'Fresh News', 'Fresh Pawz', 'Fresh Shears', 'Fresh Step', 'Fresh Wave', 'FriendshipCollar', 'Fringe Studio', 'Frisco', 'Friskies', 'From The Field', 'Fromm', 'Frontline', 'Frontline Gold', 'Fruitables', 'Full Life', 'Full Moon', 'Functional Nutriments', 'Fur Goodness Sake', 'Fur-Zoff', 'Furbo', 'FURemover', 'FurHaven', 'FURminator', 'Furosemide', 'Furosemide Compounded', 'Furr Dogz', 'Furrfighters', 'Furry Republic', 'FurryFido', 'FurZapper', 'Fusion Gates', 'Fussie Cat', 'FUZZU', 'Galapagos', 'Galliprant', 'Gamma2', 'Garden Chic!'];
 
-const imageUrl = [
-  `https://placekitten.com/${faker.random.number({min: 200, max: 299})}/${faker.random.number({min: 300, max: 399})}`
-]
+// const imageUrl =
 
 module.exports = {
   productNames,
   randomWordList,
   companyName,
   category,
-  imageUrl
+  // imageUrl
 }

@@ -8,7 +8,7 @@ const productImagesSchema = new mongoose.Schema({
   company_name: String,
   category: String,
   images: [String],
-})
+});
 
 const ProductImages = mongoose.model('ProductImages', productImagesSchema);
 

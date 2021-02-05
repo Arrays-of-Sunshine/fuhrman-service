@@ -1,30 +1,28 @@
-const seed = require('./seed.js');
-let path = './generatedData.csv';
 const faker = require('faker');
 const fs = require('fs');
 const csvWriter = require('csv-write-stream');
-const writer = csvWriter();
-// const csv = require('fast-csv');
-// const csvStream  = csv.format({ headers: true });
-// const { writeToPath } = require('@fast-csv/format');
 
-const { productNames, randomDescription, companyName, category, imageUrlList } = require('./seed.js');
+const writer = csvWriter();
+
+const {
+  productNames, randomDescription, companyName, category, imageUrlList,
+} = require('./seed.js');
 
 (() => {
   console.time('writingToPathTimer');
   writer.pipe(fs.createWriteStream('generatedData.csv'));
   try {
-    for (let i = 1; i <= 10000000; i++) {
+    for (let i = 1; i <= 10000000; i += 1) {
       writer.write({
         id: i,
         productName: faker.random.arrayElement(productNames),
-        randomDescription: randomDescription,
+        randomDescription,
         companyName: faker.random.arrayElement(companyName),
         category: faker.random.arrayElement(category),
-        imageUrlList: imageUrlList,
-      })
+        imageUrlList,
+      });
     }
-  } catch(e) {
+  } catch (e) {
     console.error('error in writing to file: ', e.message);
   }
   writer.end(() => {
@@ -33,7 +31,15 @@ const { productNames, randomDescription, companyName, category, imageUrlList } =
   });
 })();
 
+/* Code not currently being used, kept for educational purposes, will utilize/delete as time permits. */
 
+// const csv = require('fast-csv');
+// const csvStream  = csv.format({ headers: true });
+// const { writeToPath } = require('@fast-csv/format');
+
+// const seed = require('./seed.js');
+
+// const path = './generatedData.csv';
 // const result = [];
 // for (let i = 0; i < 5; i++) {
 //   const something = [productNames[i], randomWordList(), companyName[i], category[i], imageUrl];
@@ -84,7 +90,6 @@ const { productNames, randomDescription, companyName, category, imageUrlList } =
   }
 })();
 */
-
 
 // async function(path) {
 //   try {

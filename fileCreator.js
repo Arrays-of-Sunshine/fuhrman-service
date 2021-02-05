@@ -12,10 +12,11 @@ const { productNames, randomDescription, companyName, category, imageUrlList } =
 
 (() => {
   console.time('writingToPathTimer');
-  writer.pipe(fs.createWriteStream('./generatedData.csv'));
+  writer.pipe(fs.createWriteStream('generatedData.csv'));
   try {
-    for (let i = 0; i < 10000000; i++) {
+    for (let i = 1; i <= 10000000; i++) {
       writer.write({
+        id: i,
         productName: faker.random.arrayElement(productNames),
         randomDescription: randomDescription,
         companyName: faker.random.arrayElement(companyName),
@@ -26,9 +27,10 @@ const { productNames, randomDescription, companyName, category, imageUrlList } =
   } catch(e) {
     console.error('error in writing to file: ', e.message);
   }
-  writer.end();
-  console.log('done');
-  console.timeEnd('writingToPathTimer');
+  writer.end(() => {
+    console.log('done');
+    console.timeEnd('writingToPathTimer');
+  });
 })();
 
 

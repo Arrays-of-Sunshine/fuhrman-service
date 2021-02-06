@@ -1,4 +1,3 @@
-// const mongoose = require('mongoose');
 const { MongoClient } = require('mongodb');
 
 const url = 'mongodb://localhost/productImages';
@@ -19,6 +18,8 @@ const getProductInfo = (id, cb) => {
 module.exports = {
   getProductInfo,
 };
+
+/* This code below is currently not being used, but will be kept here for learning purposes. Will be removed. */
 
 // const mongoURI = 'mongodb://localhost/productImages';
 // const collectionName = 'productimages';
@@ -45,8 +46,6 @@ module.exports = {
 //     // cb(result);
 //   },
 // };
-
-/* This code below is currently not being used, but will be kept here for learning purposes. */
 
 // const fs = require('fs');
 // const csv = require('csv-parser');

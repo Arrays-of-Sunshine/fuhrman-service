@@ -15,9 +15,8 @@
   "scripts": {
     "start": "nodemon server/index-sv.js",
     "build": "webpack --watch",
-    "predatabase": "node database/Models/productImages.js",
-    "database": "node database/index-mongo-db.js",
     "seedCSV": "node fileCreator.js",
+    "preseedDb": "node database/Models/productImages.js && node database/dropDatabase.js",
     "seedDb": "mongoimport --db=productImages --type=csv --headerline --collection=productimages --file=./generating_data/generatedData.csv",
     "test": "jest"
   },

@@ -45,21 +45,19 @@ npm install
 
 From within root directory:
 ```
-npm run database
-```
-If you get this message:
-### Collection doesn't exist! Database is ready to be seeded.
-then run:
-```
 npm run seedDb
 ```
-to seed your database with 10 million records!
+
+to drop any currently existing databases/collections and seed your database with a _fresh_ 10 million records!
+
 ### Database name is 'productImages' and the collection is 'productimages'.
 
-To delete records from database and to delete database, run this command again:
+To delete records from database and to delete database, run this command:
 ```
-npm run database
+npm run preseedDb
 ```
+_You can also use the above command to confirm that your database is empty._
+
 If you would like to regenerate random data for your database, run:
 ```
 npm run seedCSV

@@ -1,12 +1,50 @@
-const mongoose = require('mongoose');
-const ProductImages = require('./Models/productImages.js');
-  // console.log(ProductImages)
+// const mongoose = require('mongoose');
+const { MongoClient } = require('mongodb');
 
-  // module.exports = {
-  //   getProductInfo = (id, cb) => {
-  //     await
-  //   }
-  // }
+const url = 'mongodb://localhost/productImages';
+const getProductInfo = (id, cb) => {
+  MongoClient.connect(url, (err, db) => {
+    if (err) throw err;
+    const dbo = db.db('productImages');
+    const query = { id: 1 };
+    dbo.collection('productimages').find(query).toArray((err, results) => {
+      if (err) throw err;
+      cb(results);
+      db.close();
+    });
+  });
+};
+
+module.exports = {
+  getProductInfo,
+};
+
+// const mongoURI = 'mongodb://localhost/productImages';
+// const collectionName = 'productimages';
+// mongoose.connect(mongoURI, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
+
+// const db = mongoose.connection;
+
+// // const ProductImages = require('./Models/productImages.js');
+// // const
+
+// module.exports = {
+//   db,
+//   getProductInfo: async (id, cb) => {
+//     await db.collection(collectionName).find({id: id}).toArray((err, results) => {
+//       if (err) {
+//         throw err;
+//       }
+//       console.log(results);
+//     });
+//     // console.log(result)
+//     // cb(result);
+//   },
+// };
+
 /* This code below is currently not being used, but will be kept here for learning purposes. */
 
 // const fs = require('fs');

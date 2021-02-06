@@ -1,13 +1,7 @@
 const mongoose = require('mongoose');
 
-const mongoURI = 'mongodb://localhost/productImages';
+const { db } = require('./index-mongo-db.js');
 
-mongoose.connect(mongoURI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
-const db = mongoose.connection;
 db.dropCollection('productimages')
   .catch((e) => {
     if (e.message === 'ns not found') {

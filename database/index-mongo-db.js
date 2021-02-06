@@ -2,6 +2,7 @@
 const { MongoClient } = require('mongodb');
 
 const url = 'mongodb://localhost/productImages';
+
 const getProductInfo = (id, cb) => {
   MongoClient.connect(url, (err, db) => {
     if (err) throw err;

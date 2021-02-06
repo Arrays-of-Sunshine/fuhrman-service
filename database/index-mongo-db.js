@@ -1,26 +1,12 @@
 const mongoose = require('mongoose');
+const ProductImages = require('./Models/productImages.js');
+  // console.log(ProductImages)
 
-const mongoURI = 'mongodb://localhost/productImages';
-const database = 'productImages';
-
-mongoose.connect(mongoURI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
-const db = mongoose.connection;
-db.dropCollection('productimages')
-  .catch((e) => {
-    if (e.message === 'ns not found') {
-      console.error('Collection doesn\'t exist! Database is ready to be seeded.');
-    } else {
-      console.error('error in dropping collections:', e.message);
-    }
-  })
-  .finally(() => {
-    mongoose.connection.close();
-  });
-
+  // module.exports = {
+  //   getProductInfo = (id, cb) => {
+  //     await
+  //   }
+  // }
 /* This code below is currently not being used, but will be kept here for learning purposes. */
 
 // const fs = require('fs');

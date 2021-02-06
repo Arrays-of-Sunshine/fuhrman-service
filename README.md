@@ -41,3 +41,22 @@ npm install -g webpack
 npm install
 ```
 
+### For seeding database:
+
+From within root directory:
+```
+npm run database
+```
+If you get this message:
+### Collection doesn't exist! Database is ready to be seeded.
+then run:
+```
+npm run seedDb
+```
+to seed your database with 10 million records!
+### Database name is 'productImages' and the collection is 'productimages'.
+
+To delete records from database and to delete database, run this command again:
+```
+npm run database
+```

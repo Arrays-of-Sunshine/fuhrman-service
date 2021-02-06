@@ -60,3 +60,7 @@ To delete records from database and to delete database, run this command again:
 ```
 npm run database
 ```
+If you would like to regenerate random data for your database, run:
+```
+npm run seedCSV
+```

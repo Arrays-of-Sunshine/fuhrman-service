@@ -58,6 +58,13 @@ npm run preseedDb
 ```
 _You can also use the above command to confirm that your database is empty._
 
+To increase your querying speed, run the following commands in the terminal (make sure you have mongodb installed!):
+```
+mongo
+use productImages;
+db.productimages.find({ id: 1 });
+```
+
 If you would like to regenerate random data for your database, run:
 ```
 npm run seedCSV

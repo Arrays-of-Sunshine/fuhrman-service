@@ -5,21 +5,21 @@ const csvWriter = require('csv-write-stream');
 const writer = csvWriter();
 
 const {
-  productNames, randomDescription, companyName, category, imageUrlList,
+  product_name, image_desc, company_name, category, image_loc,
 } = require('./seed.js');
 
 (() => {
   console.time('writingToPathTimer');
-  writer.pipe(fs.createWriteStream('generatedData.csv'));
+  writer.pipe(fs.createWriteStream('./generating_data/generatedData.csv'));
   try {
     for (let i = 1; i <= 10000000; i += 1) {
       writer.write({
-        id: i,
-        productName: faker.random.arrayElement(productNames),
-        randomDescription,
-        companyName: faker.random.arrayElement(companyName),
+        product_id: i,
+        product_name: faker.random.arrayElement(product_name),
+        image_desc: image_desc,
+        company_name: faker.random.arrayElement(company_name),
         category: faker.random.arrayElement(category),
-        imageUrlList,
+        image_loc,
       });
     }
   } catch (e) {
@@ -42,7 +42,7 @@ const {
 // const path = './generatedData.csv';
 // const result = [];
 // for (let i = 0; i < 5; i++) {
-//   const something = [productNames[i], randomWordList(), companyName[i], category[i], imageUrl];
+//   const something = [product_name[i], randomWordList(), company_name[i], category[i], imageUrl];
 //   result.push(something)
 // }
 // console.log(result)
@@ -51,14 +51,14 @@ const {
 (async() => {
   console.time('writingToPathTimer')
   // let rows = [];
-  // rows.push(['productName', 'productDescriptionWords', 'companyName', 'category', 'imageUrl']);
-  await writeToPath(path, ['productName', 'productDescriptionWords', 'companyName', 'category', 'imageUrl']);
+  // rows.push(['productName', 'productDescriptionWords', 'company_name', 'category', 'imageUrl']);
+  await writeToPath(path, ['productName', 'productDescriptionWords', 'company_name', 'category', 'imageUrl']);
   for (let i = 0; i < 10; i++) {
     try {
       await writeToPath(path, [
-        [faker.random.arrayElement(productNames),
+        [faker.random.arrayElement(product_name),
         randomWordList(),
-        faker.random.arrayElement(companyName),
+        faker.random.arrayElement(company_name),
         faker.random.arrayElement(category),
         imageUrlFunc(),
       ])
@@ -78,9 +78,9 @@ const {
   for (let i = 0; i < 10; i++) {
     try {
       await fs.writeFile(path, {
-        productName: faker.random.arrayElement(productNames),
+        productName: faker.random.arrayElement(product_name),
         productDescriptionWords: randomWordList(),
-        companyName: faker.random.arrayElement(companyName),
+        company_name: faker.random.arrayElement(company_name),
         category: faker.random.arrayElement(category),
         imageUrl: imageUrl,
       });

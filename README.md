@@ -18,10 +18,8 @@
 ## Usage
 
 > #1: npm install
-> #2: initiate database "product_images" by running "mysql -u root < schema.sql" in the terminal.
-> #3: seed the database by running "npm run seed" in the terminal.
-> #4: "npm run build" to build bundle.js in the public folder
-> #5: "npm start" to start the server" (PORT# is 8002)
+> #2: "npm run build" to build bundle.js in the public folder
+> #3: "npm start" to start the server" (PORT# is 8002)
 
 ## Requirements
 
@@ -62,7 +60,7 @@ To increase your querying speed, run the following commands in the terminal (mak
 ```
 mongo
 use productImages;
-db.productimages.find({ id: 1 });
+db.productimages.createIndex({product_id: 1});
 ```
 
 If you would like to regenerate random data for your database, run:

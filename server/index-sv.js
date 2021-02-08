@@ -18,7 +18,8 @@ app.use('/', express.static('public'));
 app.use('/bundle', express.static('public/bundle.js'));
 
 app.get('/products/:id', (req, res) => {
-  const { id } = req.params;
+  let { id } = req.params;
+  id = Number(id);
   db.getProductInfo(id, (result) => {
     res.send(result[0]);
   });

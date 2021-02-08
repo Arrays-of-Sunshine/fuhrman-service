@@ -15,13 +15,13 @@
   "scripts": {
     "start": "nodemon server/index-sv.js",
     "build": "webpack --watch",
-    "seed": "node fileCreator.js",
-    "predatabase": "node database/Models/productImages.js",
-    "database": "node database/index-mongo-db.js",
+    "seedCSV": "node fileCreator.js",
+    "preseedDb": "node database/Models/productImages.js && node database/dropDatabase.js",
     "seedDb": "mongoimport --db=productImages --type=csv --headerline --collection=productimages --file=./generating_data/generatedData.csv",
     "test": "jest"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
     "@fast-csv/parse": "^4.3.6",
     "@shelf/jest-mongodb": "^1.2.3",
     "airbnb-browser-shims": "^3.3.0",
@@ -40,7 +40,6 @@
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-test-renderer": "^17.0.1",
-    "regenerator-runtime": "^0.13.7",
     "sequelize": "^6.3.5",
     "styled-components": "^5.2.1"
   },
@@ -64,8 +63,6 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "file-loader": "^6.2.0",
     "jest": "^26.6.3",
-    "jest-environment-enzyme": "^7.1.2",
-    "jest-enzyme": "^7.1.2",
     "nodemon": "^2.0.7",
     "style-loader": "^2.0.0",
     "svg-url-loader": "^7.1.1",

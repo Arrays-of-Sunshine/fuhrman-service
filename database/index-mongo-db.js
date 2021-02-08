@@ -1,24 +1,51 @@
-const mongoose = require('mongoose');
+const { MongoClient } = require('mongodb');
 
-mongoose.connect('mongodb://localhost/productImages', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+const url = 'mongodb://localhost/productImages';
 
-const db = mongoose.connection;
-db.dropCollection('productimages')
-  .catch((e) => {
-    if (e.message === 'ns not found') {
-      console.error('Collection doesn\'t exist! Database is ready to be seeded.');
-    } else {
-      console.error('error in dropping collections:', e.message);
-    }
-  })
-  .finally(() => {
-    mongoose.connection.close();
+const getProductInfo = (id, cb) => {
+  MongoClient.connect(url, (err, db) => {
+    if (err) throw err;
+    const dbo = db.db('productImages');
+    const query = { id: 1 };
+    dbo.collection('productimages').find(query).toArray((err, results) => {
+      if (err) throw err;
+      cb(results);
+      db.close();
+    });
   });
+};
 
-/* This code below is currently not being used, but will be kept here for learning purposes. */
+module.exports = {
+  getProductInfo,
+};
+
+/* This code below is currently not being used, but will be kept here for learning purposes. Will be removed. */
+
+// const mongoURI = 'mongodb://localhost/productImages';
+// const collectionName = 'productimages';
+// mongoose.connect(mongoURI, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
+
+// const db = mongoose.connection;
+
+// // const ProductImages = require('./Models/productImages.js');
+// // const
+
+// module.exports = {
+//   db,
+//   getProductInfo: async (id, cb) => {
+//     await db.collection(collectionName).find({id: id}).toArray((err, results) => {
+//       if (err) {
+//         throw err;
+//       }
+//       console.log(results);
+//     });
+//     // console.log(result)
+//     // cb(result);
+//   },
+// };
 
 // const fs = require('fs');
 // const csv = require('csv-parser');

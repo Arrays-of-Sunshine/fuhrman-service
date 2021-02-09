@@ -37,6 +37,7 @@
     "fs": "0.0.1-security",
     "mongoose": "^5.11.15",
     "mysql": "^2.18.1",
+    "newrelic": "^7.1.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-test-renderer": "^17.0.1",

@@ -1,10 +1,11 @@
 const { MongoClient } = require('mongodb');
 
-const url = 'mongodb://localhost/productImages';
+const url = 'mongodb://3.21.244.109/productImages';
 
 const getProductInfo = (id, cb) => {
   MongoClient.connect(url, (err, db) => {
     if (err) throw err;
+    console.log('connected to mongoClient');
     const dbo = db.db('productImages');
     const query = { product_id: id };
     dbo.collection('productimages').find(query).toArray((err, results) => {

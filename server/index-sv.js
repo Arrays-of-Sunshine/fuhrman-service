@@ -5,13 +5,13 @@ require('newrelic');
 // const loader = require('./loaderio.txt');
 
 const app = express();
-// const cors = require('cors');
+const cors = require('cors');
 
 const PORT = 8002;
 
-// app.use(cors({
-//   origin: 'http://localhost: 8002',
-// }));
+app.use(cors({
+  origin: 'http://localhost:8000',
+}));
 
 app.use(express.json());
 app.use(express.urlencoded());

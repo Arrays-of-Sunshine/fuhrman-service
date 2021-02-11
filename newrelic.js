@@ -1,3 +1,4 @@
+require('dotenv').config();
 'use strict'
 /**
  * New Relic agent configuration.
@@ -13,7 +14,7 @@ exports.config = {
   /**
    * Your New Relic license key.
    */
-  license_key: 'e1394e9ce0483e1e2bfac37024d24c21e917NRAL',
+  license_key: process.env.NEWRELIC_LICENSEKEY,
   /**
    * This setting controls distributed tracing.
    * Distributed tracing lets you see the path that a request takes through your

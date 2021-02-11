@@ -1,8 +1,7 @@
 const { MongoClient } = require('mongodb');
-//need to add username + password
-// molfuh:student@
-const url = 'mongodb://molly:student@18.188.109.121:27017/productImages';
-// ${MONGO_URL}
+require('dotenv').config();
+
+const url = process.env.MONGOURL;
 
 const getProductInfo = (id, cb) => {
   MongoClient.connect(url, (err, db) => {

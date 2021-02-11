@@ -16,7 +16,7 @@ const {
       writer.write({
         product_id: i,
         product_name: faker.random.arrayElement(product_name),
-        image_desc: image_desc,
+        image_desc,
         company_name: faker.random.arrayElement(company_name),
         category: faker.random.arrayElement(category),
         image_loc,

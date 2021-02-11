@@ -4,3 +4,7 @@ milestone.txt
 *.csv
 
 *.txt
+
+*.env
+
+*.log

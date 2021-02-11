@@ -19,12 +19,10 @@ class App extends React.Component {
 
   componentDidMount() {
     const randomProduct = Math.floor(Math.random() * (50 - 1) + 1);
-    // axios.get(`http://18.219.254.88:8002/products/${randomProduct}`)
     axios.get(`/products/${randomProduct}`)
       .then((res) => {
         console.log(res.data);
         const product_data = new Array(6).fill(res.data);
-        // const product_data = res.data;
         this.setState(
           {
             product_data,

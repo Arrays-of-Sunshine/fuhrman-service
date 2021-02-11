@@ -1,6 +1,8 @@
 const { MongoClient } = require('mongodb');
-
-const url = 'mongodb://3.21.244.109/productImages';
+//need to add username + password
+// molfuh:student@
+const url = 'mongodb://molly:student@18.188.109.121:27017/productImages';
+// ${MONGO_URL}
 
 const getProductInfo = (id, cb) => {
   MongoClient.connect(url, (err, db) => {

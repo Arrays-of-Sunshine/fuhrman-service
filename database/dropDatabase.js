@@ -1,12 +1,14 @@
 const mongoose = require('mongoose');
 
-const mongoURI = 'mongodb://3.21.244.109:27017';
+const mongoURI = 'mongodb://18.188.109.121:27017/productImages';
+${MONGO_URI}
 
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  user: "admin",
-  pass: "password",
+  family: 4,
+  user: 'molly',
+  pass: 'student',
 })
   .then((data) => {
     console.log('connected to database!!!!')

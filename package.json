@@ -17,7 +17,7 @@
     "build": "webpack --watch",
     "seedCSV": "node generating_data/fileCreator.js",
     "preseedDb": "node database/Models/productImages.js && node database/dropDatabase.js",
-    "seedDb": "mongoimport --db=productImages --type=csv --headerline --collection=productimages --file=./generating_data/generatedData.csv",
+    "seedDb": "mongoimport -u molly -p student --host 18.188.109.121:27017 --db=productImages --type=csv --headerline --collection=productimages --file=./generating_data/generatedData.csv",
     "test": "jest"
   },
   "dependencies": {

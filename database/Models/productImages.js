@@ -1,13 +1,12 @@
 const mongoose = require('mongoose');
 
 const productImagesSchema = new mongoose.Schema({
-  _id: Number,
   product_id: Number,
   product_name: String,
-  product_description: String,
+  image_desc: String,
   company_name: String,
   category: String,
-  images: [String],
+  image_loc: String,
 });
 
 const ProductImages = mongoose.model('ProductImages', productImagesSchema);

@@ -6,7 +6,7 @@ const getProductInfo = (id, cb) => {
   MongoClient.connect(url, (err, db) => {
     if (err) throw err;
     const dbo = db.db('productImages');
-    const query = { id: 1 };
+    const query = { product_id: id };
     dbo.collection('productimages').find(query).toArray((err, results) => {
       if (err) throw err;
       cb(results);

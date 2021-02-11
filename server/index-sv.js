@@ -1,15 +1,16 @@
 const express = require('express');
-// const db = require('../database/index-db.js').connection;
 const db = require('../database/index-mongo-db.js');
+require('newrelic');
+require('dotenv').config();
 
 const app = express();
-// const cors = require('cors');
+const cors = require('cors');
 
 const PORT = 8002;
 
-// app.use(cors({
-//   origin: 'http://localhost: 8002',
-// }));
+app.use(cors({
+  origin: 'http://localhost:8000',
+}));
 
 app.use(express.json());
 app.use(express.urlencoded());

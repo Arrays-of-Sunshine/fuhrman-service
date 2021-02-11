@@ -2,3 +2,9 @@ node_modules
 milestone.txt
 
 *.csv
+
+*.txt
+
+*.env
+
+*.log

@@ -1,11 +1,21 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 
-const mongoURI = 'mongodb://localhost/productImages';
+const mongoURI = process.env.DB_MONGOURI;
 
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-});
+  family: 4,
+  user: process.env.DB_USER,
+  pass: process.env.DB_PASS,
+})
+  .then((data) => {
+    console.log('connected to database!!!!');
+  })
+  .catch((e) => {
+    console.error('error in database connection: ', e);
+  });
 
 const db = mongoose.connection;
 

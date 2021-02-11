@@ -1,10 +1,12 @@
 const { MongoClient } = require('mongodb');
+require('dotenv').config();
 
-const url = 'mongodb://localhost/productImages';
+const url = process.env.MONGOURL;
 
 const getProductInfo = (id, cb) => {
   MongoClient.connect(url, (err, db) => {
     if (err) throw err;
+    console.log('connected to mongoClient');
     const dbo = db.db('productImages');
     const query = { product_id: id };
     dbo.collection('productimages').find(query).toArray((err, results) => {

@@ -17,7 +17,7 @@
     "build": "webpack --watch",
     "seedCSV": "node generating_data/fileCreator.js",
     "preseedDb": "node database/Models/productImages.js && node database/dropDatabase.js",
-    "seedDb": "mongoimport --db=productImages --type=csv --headerline --collection=productimages --file=./generating_data/generatedData.csv",
+    "seedDb": "mongoimport -u molly -p student --host 18.188.109.121:27017 --db=productImages --type=csv --headerline --collection=productimages --file=./generating_data/generatedData.csv",
     "test": "jest"
   },
   "dependencies": {
@@ -31,12 +31,14 @@
     "cors": "^2.8.5",
     "csv-parser": "^3.0.0",
     "csv-write-stream": "^2.0.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "faker": "^5.3.1",
     "framer-motion": "^3.2.1",
     "fs": "0.0.1-security",
     "mongoose": "^5.11.15",
     "mysql": "^2.18.1",
+    "newrelic": "^7.1.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-test-renderer": "^17.0.1",

@@ -2,7 +2,7 @@
   "name": "",
   "version": "",
   "description": "service that renders main product images",
-  "author": "K Sakama",
+  "author": "K Sakama & M Fuhrman",
   "license": "",
   "engines": {
     "node": ">=6.13.0"
